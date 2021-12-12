@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -6,8 +6,41 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { handleSignin } from '../service/AuthService';
 
-const Login = ({ navigation }) => {
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    let regex =
+      /^[0-9a-zA-Z]+([._+-][0-9A-Za-z]+)*@[0-9A-Za-z]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
+
+    let valid = true;
+    const temp = {};
+    if (!regex.test(email)) {
+      valid = false;
+      temp['mail'] = 'Enter the Email';
+    }
+    if (!password) {
+      valid = false;
+      temp['pass'] = 'Enter the Password';
+    }
+    setErrors(temp);
+
+    return valid;
+  };
+  const navigateToDashBoardPage = () => {
+    navigation.navigate('Dashboard');
+  };
+
+  const onSubmit = () => {
+    if (validate()) {
+      handleSignin(email, password, navigateToDashBoardPage());
+    }
+  };
+
   return (
     <View style={styles.screen}>
       <View style={styles.topView}>
@@ -21,14 +54,20 @@ const Login = ({ navigation }) => {
           placeholder="Email"
           placeholderTextColor={'black'}
           style={styles.textInput}
+          value={email}
+          onChangeText={setEmail}
+          errorText={errors.mail}
         />
         <TextInput
           placeholder="Password"
           placeholderTextColor={'black'}
           style={styles.textInput}
+          value={password}
+          onChangeText={setPassword}
+          errorText={errors.pass}
           secureTextEntry
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={onSubmit}>
           <Text style={styles.buttonText}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity
