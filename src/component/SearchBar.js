@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   view3: {
     height: 50,
-    backgroundColor: 'lavender',
+    backgroundColor: '#BDC3C7',
     borderRadius: 30,
     flexDirection: 'row',
     alignItems: 'center',
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   text1: {
-    color: 'grey',
+    color: 'black',
     fontSize: 18,
   },
 });
