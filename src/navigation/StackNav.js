@@ -4,6 +4,8 @@ import React from 'react';
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import Dashboard from '../screens/Dashboard';
+import Drawer from '../navigation/Drawer'
+
 
 const StackNav = () => {
   const Stack = createStackNavigator();
@@ -13,6 +15,7 @@ const StackNav = () => {
         {/* <Stack.Screen name={'Login'} component={Login} />
         <Stack.Screen name={'Signup'} component={Signup} /> */}
         <Stack.Screen name={'Dashboard'} component={Dashboard}/>
+        <Stack.Screen name="Drawer" component={Drawer}/>
       </Stack.Navigator>
   );
 };

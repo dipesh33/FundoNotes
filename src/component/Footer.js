@@ -37,7 +37,7 @@ const Footer = () => {
       </View>
       <View style={styles.float}>
         <TouchableOpacity activeOpacity={0.5} style={styles.floatTouch}>
-          <Feather name="file-plus" style={styles.plusIcon} size={35}></Feather>
+          <Feather name="file-plus" style={styles.plusIcon} size={30}></Feather>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,7 +46,7 @@ const Footer = () => {
 const styles = StyleSheet.create({
   footer: {
     height: 80,
-    backgroundColor: '#BDC3C7',
+    backgroundColor: '#02B290',
     borderWidth: 0.2,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     alignSelf: 'center',
     elevation: 8,
-    backgroundColor: '#CAD5E2',
+    backgroundColor: 'white',
     borderColor: '#CAD5E2',
   },
   addImg: {
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     height: 55,
   },
   icons: {
-    color: '#009387',
+    color: 'black',
     alignContent: 'space-between',
     marginLeft: 15,
   },

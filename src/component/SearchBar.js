@@ -1,21 +1,23 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const SearchBar = () => {
+
+const SearchBar = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.view2}>
         <View style={styles.view3}>
           <View>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <MaterialIcon
                 color="black"
-                name="menu"
+                name='menu'
                 size={25}
-                style={{padding: 10}}></MaterialIcon>
-            </TouchableOpacity>
+                style={{padding: 5}}></MaterialIcon>
+            </TouchableOpacity> */}
+          
           </View>
           <View>
             <TouchableOpacity>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
   },
   view3: {
     height: 50,
-    backgroundColor: '#BDC3C7',
+    backgroundColor: '#02B290',
     borderRadius: 30,
     flexDirection: 'row',
     alignItems: 'center',
@@ -60,6 +62,7 @@ const styles = StyleSheet.create({
   text1: {
     color: 'black',
     fontSize: 18,
+    fontStyle:'italic'
   },
 });
 

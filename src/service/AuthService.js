@@ -10,7 +10,7 @@ export const registration = async (email, password, fullName, callBack) => {
         password
       );
       console.log(".........................");
-      firebase.firestore().collection("users").doc(userData.user.uid).set({
+      await firebase.firestore().collection("users").doc(userData.user.uid).set({
         FullName: fullName,
         Email: email,
       });

@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
 import 'react-native-gesture-handler';
 import StackNav from './src/navigation/StackNav';
 import { NavigationContainer } from '@react-navigation/native';
+import DrawerNav from './src/navigation/DrawerNav';
 
 const App = () => {
   return (
@@ -12,6 +12,5 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({});
 
 export default App;
