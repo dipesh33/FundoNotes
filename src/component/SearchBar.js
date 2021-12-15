@@ -10,13 +10,13 @@ const SearchBar = ({ navigation }) => {
       <View style={styles.view2}>
         <View style={styles.view3}>
           <View>
-            {/* <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <MaterialIcon
                 color="black"
                 name='menu'
                 size={25}
                 style={{padding: 5}}></MaterialIcon>
-            </TouchableOpacity> */}
+            </TouchableOpacity>
           
           </View>
           <View>

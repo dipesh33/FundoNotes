@@ -5,13 +5,19 @@ const getUid = async () => {
     return await AsyncStorage.getItem('uid')
 }
 
-export const addNotes = async() => {
-    return firestore().collection('Datakeep').doc(uid).collection('Notes')
-    .set({
-
-    })
+export const storeNotes = async (noteData) => {
+    const uid = await getUid() 
+    console.log(uid);
+    return firestore()
+        .collection('keepData')
+        .doc(uid)
+        .collection('Notes')
+        .add({
+            ...noteData
+        }).then(() => {
+            console.log("data added");
+        })
 }
-
 
 
 export const fetchNotes = async() => {
@@ -27,5 +33,45 @@ export const fetchNotes = async() => {
             arr.push(docData)
         })
         return array
+    })
+}
+
+export const fetchArchiveData = async() => {
+    const array = []
+    const uid = await getUid()
+    return firestore().collection('keepData').doc(uid).collection('Notes')
+    .get()
+    .then(querySnapshot => {
+        console.log(querySnapshot.size);
+        querySnapshot.forEach(documentSnapshot => {
+            console.log('User ID : ', documentSnapshot.id, documentSnapshot.data());
+            const docData = documentSnapshot.data()
+            if(docData.isArchive){
+                docData.noteId = documentSnapshot.id,
+                array.push(docData)
+                console.log("Archive Data", array);
+            }
+        })
+        return array;
+    })
+}
+
+export const fetchDeleteData = async() => {
+    const array = []
+    const uid = await getUid()
+    return firestore().collection('keepData').doc(uid).collection('Notes')
+    .get()
+    .then(querySnapshot => {
+        console.log(querySnapshot.size);
+        querySnapshot.forEach(documentSnapshot => {
+            console.log('UserID: ', querySnapshot.id, documentSnapshot.data());
+            const docData = documentSnapshot.data();
+            if(docData.isDelete){
+                docData.noteId = documentSnapshot.id,
+                array.push(docData);
+                console.log("Delete Data:", array);
+            }
+        })
+        return array;
     })
 }

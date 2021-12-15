@@ -36,7 +36,7 @@ const Footer = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.float}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.floatTouch}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.floatTouch} onPress={() => {navigation.navigate("CreateNote")}}>
           <Feather name="file-plus" style={styles.plusIcon} size={30}></Feather>
         </TouchableOpacity>
       </View>
