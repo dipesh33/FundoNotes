@@ -5,7 +5,7 @@ const getUid = async () => {
     return await AsyncStorage.getItem('uid')
 }
 
-export const storeNotes = async (noteData) => {
+export const storeNotes = async (noteData, routingCallback, noteId) => {
     const uid = await getUid() 
     console.log(uid);
     return firestore()
@@ -15,6 +15,7 @@ export const storeNotes = async (noteData) => {
         .add({
             ...noteData
         }).then(() => {
+            routingCallback()
             console.log("data added");
         })
 }
@@ -23,15 +24,17 @@ export const storeNotes = async (noteData) => {
 export const fetchNotes = async() => {
     const array = []
     const uid = await getUid()
-    return firestore().collection('DataKeep').doc(uid).collection('Notes').get()
+    console.log("UID: ", uid);
+    return firestore().collection('keepData').doc(uid).collection('Notes').get()
     .then(querySnapshot => {
         console.log('Total Notes: ', querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
             console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
             const docData = documentSnapshot.data()
             docData.noteId = documentSnapshot.id;
-            arr.push(docData)
-        })
+            array.push(docData)
+        });
+        console.log("Array:",array)
         return array
     })
 }

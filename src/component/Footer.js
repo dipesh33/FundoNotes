@@ -36,7 +36,12 @@ const Footer = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.float}>
-        <TouchableOpacity activeOpacity={0.5} style={styles.floatTouch} onPress={() => {navigation.navigate("CreateNote")}}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.floatTouch}
+          onPress={() => {
+            navigation.navigate('CreateNote');
+          }}>
           <Feather name="file-plus" style={styles.plusIcon} size={30}></Feather>
         </TouchableOpacity>
       </View>
@@ -99,18 +104,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: 70,
     height: 70,
-    borderRadius:100/2,
+    borderRadius: 100 / 2,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor:'#009387',
-    borderColor:'lavender',
-    right:30,
-    bottom:30
+    backgroundColor: '#009387',
+    borderColor: 'lavender',
+    right: 30,
+    bottom: 30,
   },
   plusIcon: {
     width: 50,
     height: 50,
-    padding:10
+    padding: 10,
   },
 });
 export default Footer;

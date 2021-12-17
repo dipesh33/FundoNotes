@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
 
   const onSubmit = () => {
     if (validate()) {
-      handleSignin(email, password, navigateToDashBoardPage());
+      handleSignin(email, password, navigateToDashBoardPage);
     }
   };
 

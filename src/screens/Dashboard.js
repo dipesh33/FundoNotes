@@ -1,4 +1,3 @@
-import {NavigationContainer} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, FlatList, ScrollView} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -9,7 +8,9 @@ import NoteCard from '../component/NoteCard';
 
 const Dashboard = ({navigation}) => {
   const [noteData, setNoteData] = useState([]);
+  const [isList] = useState(false);
 
+  console.log('Dashboard render');
   const fetchData = async () => {
     let data = await fetchNotes();
     setNoteData(data);
@@ -18,36 +19,38 @@ const Dashboard = ({navigation}) => {
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      fetchData()
-    })
+      fetchData();
+    });
     return unsubscribe;
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <View>
+      <View style={styles.container}>
+    <ScrollView>
       <SearchBar />
-
-      <View style={{height: '80%'}}>
-        <ScrollView>
+        <View style={{height: '100%'}}>
           <View>
             <Text style={styles.title}>Pin</Text>
             <FlatList
               data={noteData}
-              renderItem={({item}) =>
-                  <TouchableOpacity
-                    onPress={() => {
-                      navigation.navigate('CreateNote', {
-                        editData: item,
-                        editId: item.noteId,
-                      });
-                    }}>
-                    <NoteCard {...item} />
-                  </TouchableOpacity>
-              }
+              renderItem={({item}) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('CreateNote', {
+                      editData: item,
+                      editId: item.noteId,
+                    });
+                  }}>
+                  <NoteCard {...item} />
+                </TouchableOpacity>
+              )}
+              numColumns={!isList ? 1 : 2}
+                key={!isList ? 1 : 2}
             />
           </View>
           <View>
-            <Text style={styles.title}>Others</Text>
+            <Text style={styles.title}>Notes</Text>
             <FlatList
               data={noteData}
               renderItem={({item}) =>
@@ -62,21 +65,29 @@ const Dashboard = ({navigation}) => {
                     <NoteCard {...item} />
                   </TouchableOpacity>
                 )}
+                numColumns={!isList ? 1 : 2}
+                key={!isList ? 1 : 2}
             />
           </View>
-        </ScrollView>
-      </View>
-
-      <View style={styles.footer}>
+        </View>
+    </ScrollView>
+    <View style={styles.footer}>
         <Footer />
       </View>
+    </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   footer: {
-    marginTop: '163%',
+    marginTop: '70%',
+  },
+  title: {
+    fontSize: 16,
+    color: 'black',
+    padding: 10,
+    fontWeight: 'bold',
   },
 });
 

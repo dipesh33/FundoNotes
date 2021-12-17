@@ -1,7 +1,8 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 
-export const NoteCard = (props) => {
+const NoteCard = (props) => {
+    console.log("Prop:", props);
     return(
         <View style={styles.screen}>
             <Text style={styles.cardContent}>
@@ -14,14 +15,16 @@ export const NoteCard = (props) => {
     )
 }
 
+export default NoteCard;
+
 const styles = StyleSheet.create({
     screen:{
         borderRadius:6,
         elevation:3,
         backgroundColor:"#fff",
-        shadowOffset:{width:1, height:1},
-        shadowColor: "#333",
-        shadowOpacity:0.3,
+        // shadowOffset:{width:1, height:1},
+        // shadowColor: "#333",
+        // shadowOpacity:0.3,
         marginHorizontal:4,
         marginVertical:6
     },

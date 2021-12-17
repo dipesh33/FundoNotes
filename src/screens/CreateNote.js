@@ -25,7 +25,7 @@ const CreateNote = ({ navigation, route }) => {
         storeNotes(noteData, routingCallback, noteId)
     }
     const onBackButton = async () => {
-        noteOperation('DashBoard')
+        noteOperation('Dashboard')
     }
     const BottomSheet = () => {
         return (
