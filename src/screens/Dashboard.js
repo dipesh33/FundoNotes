@@ -29,7 +29,7 @@ const Dashboard = ({navigation}) => {
       <View style={styles.container}>
     <ScrollView>
       <SearchBar />
-        <View style={{height: '100%'}}>
+        <View style={styles.pin}>
           <View>
             <Text style={styles.title}>Pin</Text>
             <FlatList
@@ -89,6 +89,9 @@ const styles = StyleSheet.create({
     padding: 10,
     fontWeight: 'bold',
   },
+  pin:{
+    justifyContent:'flex-start',
+  }
 });
 
 export default Dashboard;

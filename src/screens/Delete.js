@@ -29,7 +29,7 @@ const Delete = ({navigation}) => {
               color="black"
               name="menu"
               size={25}
-              style={{padding: 10}}></MaterialIcon>
+              style={{padding: 10}} />
           </TouchableOpacity>
         </View>
         <View>

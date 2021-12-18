@@ -1,8 +1,8 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-export const plusBottomSheet = () => {
+export const BottomTabSheet = () => {
     return (
         <View style={{ flex: 1 }}>
             <View>
@@ -32,8 +32,8 @@ export const plusBottomSheet = () => {
                 </TouchableOpacity>
             </View>
         </View>
-    )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     itemStyle: {

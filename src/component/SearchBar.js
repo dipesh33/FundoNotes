@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Button} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -13,11 +13,10 @@ const SearchBar = ({ navigation }) => {
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <MaterialIcon
                 color="black"
-                name='menu'
+                name="menu"
                 size={25}
-                style={{padding: 5}}></MaterialIcon>
+                style={{padding: 5}} />
             </TouchableOpacity>
-          
           </View>
           <View>
             <TouchableOpacity>

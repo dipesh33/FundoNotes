@@ -1,10 +1,10 @@
 import React, { useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import {fetchArchiveData} from '../service/NoteService';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
-import NoteCard from '../component/NoteCard'
+import NoteCard from '../component/NoteCard';
 import Footer from '../component/Footer';
 
 const Archive = ({navigation}) => {
@@ -33,7 +33,7 @@ const Archive = ({navigation}) => {
               color="black"
               name="menu"
               size={25}
-              style={{padding: 10}}></MaterialIcon>
+              style={{padding: 10}} />
           </TouchableOpacity>
         </View>
         <View>
@@ -45,7 +45,7 @@ const Archive = ({navigation}) => {
               color="black"
               name="search"
               size={25}
-              style={{padding: 10, marginLeft: 140}}></MaterialIcon>
+              style={{padding: 10, marginLeft: 140}} />
           </TouchableOpacity>
         </View>
         <View>
