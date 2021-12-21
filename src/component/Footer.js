@@ -1,5 +1,10 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -11,28 +16,16 @@ const Footer = () => {
     <View style={styles.footer}>
       <View style={styles.view}>
         <TouchableOpacity>
-          <AntDesign
-            name="checksquareo"
-            style={styles.icons}
-            size={25}></AntDesign>
+          <AntDesign name="checksquareo" style={styles.icons} size={25} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <MaterialIcon
-            name="brush"
-            style={styles.icons}
-            size={25}></MaterialIcon>
+          <MaterialIcon name="brush" style={styles.icons} size={25} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <MaterialIcon
-            name="mic-none"
-            style={styles.icons}
-            size={25}></MaterialIcon>
+          <MaterialIcon name="mic-none" style={styles.icons} size={25} />
         </TouchableOpacity>
         <TouchableOpacity>
-          <MaterialIcon
-            name="crop-original"
-            style={styles.icons}
-            size={25}></MaterialIcon>
+          <MaterialIcon name="crop-original" style={styles.icons} size={25} />
         </TouchableOpacity>
       </View>
       <View style={styles.float}>
@@ -42,22 +35,22 @@ const Footer = () => {
           onPress={() => {
             navigation.navigate('CreateNote');
           }}>
-          <Feather name="file-plus" style={styles.plusIcon} size={30}></Feather>
+          <Feather name="file-plus" style={styles.plusIcon} size={30} />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const {height} = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   footer: {
-    height: 80,
-    backgroundColor: '#02B290',
-    borderWidth: 0.2,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    backgroundColor: '#F7CD2E',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
     flexDirection: 'row',
     padding: 10,
-    borderColor: '#BDC3C7',
   },
   view: {
     width: '50%',
@@ -65,57 +58,29 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  plusView: {
+  float: {
     backgroundColor: 'transparent',
     borderColor: 'transparent',
     borderWidth: 10,
     width: 67,
     height: 67,
-    bottom: '70%',
+    bottom: '80%',
     right: '7%',
     position: 'absolute',
   },
-  googlePlus: {
+  floatTouch: {
     borderRadius: 15,
-    marginRight: 45,
-    height: 65,
-    width: 65,
+    height: 55,
+    width: 55,
+    borderColor: 'lavender',
     borderWidth: 5,
     alignSelf: 'center',
     elevation: 8,
-    backgroundColor: 'white',
-    borderColor: '#CAD5E2',
+    backgroundColor: 'lavender',
   },
-  addImg: {
-    width: 55,
-    height: 55,
-  },
-  icons: {
-    color: 'black',
-    alignContent: 'space-between',
-    marginLeft: 15,
-  },
-  float: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  floatTouch: {
-    position: 'absolute',
-    width: 70,
-    height: 70,
-    borderRadius: 100 / 2,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#009387',
-    borderColor: 'lavender',
-    right: 30,
-    bottom: 30,
-  },
-  plusIcon: {
-    width: 50,
-    height: 50,
-    padding: 10,
+  plusIcon:{
+    padding: '15%',
   },
 });
+
 export default Footer;

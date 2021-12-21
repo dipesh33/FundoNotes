@@ -10,7 +10,7 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-import {storeNotes} from '../service/NoteService';
+import {addUpdateNote} from '../service/NoteService';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {BottomTabSheet} from '../component/BottomSheet';
 
@@ -32,19 +32,20 @@ const CreateNote = ({navigation, route}) => {
   const refPlusRBSheet = useRef();
   const refColorRBSheet = useRef();
 
-  const noteOperation = screen => {
-    const noteData = {title, note, isArchive, isPin, isDelete};
+  const noteOperation = (screen, changeData = {}) => {
+    const noteData = {title, note, isArchive, isPin, isDelete, ...changeData};
     const noteId = route?.params?.editData?.noteId;
     const routingCallback = () => navigation.navigate(screen);
-    storeNotes(noteData, routingCallback, noteId);
+    const op = noteId ? 'update' : 'add';
+    addUpdateNote(noteData,op, routingCallback, noteId);
   };
 
   const onDeleteButton = async () => {
-    noteOperation('Delete', {isDelete: !isDelete});
+    noteOperation('Dashboard', {isDelete: !isDelete});
   };
 
   const onArchiveButton = async () => {
-    noteOperation('Archive', {isArchive: !isArchive});
+    noteOperation('Dashboard', {isArchive: !isArchive});
   };
 
   const onBackButton = async () => {
@@ -94,12 +95,13 @@ const CreateNote = ({navigation, route}) => {
         <View style={styles.topIcon}>
           <TouchableOpacity onPress={() => setIsPin(!isPin)}>
             {
-              <Icons
+                isPin ? <Icons
                 name="pin"
                 size={25}
                 color="#242B2E"
                 style={{marginLeft: 100}}
               />
+              : <Icons name="pin-outline" color="black" size={25} style={{ marginLeft: 100 }} />
             }
           </TouchableOpacity>
         </View>
@@ -137,7 +139,7 @@ const CreateNote = ({navigation, route}) => {
       </View>
       <View style={styles.bottomStyle}>
         <View style={styles.bottomIcon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => refPlusRBSheet.current.open()}>
             <Icons name="plus-box-outline" size={25} color="#242B2E" />
           </TouchableOpacity>
           <RBSheet
@@ -148,15 +150,15 @@ const CreateNote = ({navigation, route}) => {
           </RBSheet>
         </View>
         <View style={styles.bottomIcon}>
-          <TouchableOpacity onPress={() => refColorRBSheet.current.open()}>
+          <TouchableOpacity>
             <Icons name="palette-outline" size={25} color="#242B2E" />
           </TouchableOpacity>
-          <RBSheet
+          {/* <RBSheet
             ref={refPlusRBSheet}
             closeOnDragDown={true}
             closeOnPressMask={false}>
-                
-            </RBSheet>
+
+            </RBSheet> */}
         </View>
         <View style={{flex: 1, alignItems: 'center'}}>
           <TouchableOpacity>
@@ -164,7 +166,7 @@ const CreateNote = ({navigation, route}) => {
           </TouchableOpacity>
         </View>
         <View style={styles.bottomIcon}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => refRBSheet.current.open()}>
             <Icons name="dots-vertical" size={25} color="#242B2E" />
           </TouchableOpacity>
           <RBSheet

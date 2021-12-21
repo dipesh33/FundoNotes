@@ -16,19 +16,19 @@ const DrawerContent = ({ navigation }) => {
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('DashBoard')}>
                     <View style={styles.itemStyle}>
-                        <AntDesign name="bulb1" size={18} color='black' />
+                        <AntDesign name="bulb1" size={18} color="black" />
                         <Text style={styles.text}>Notes</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => navigation.navigate('Reminder')}>
                     <View style={styles.itemStyle}>
-                        <Icons name="bell-outline" size={18} color='black'></Icons>
+                        <Icons name="bell-outline" size={18} color="black" />
                         <Text style={styles.text}>Reminders</Text>
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <View style={styles.itemStyle}>
-                        <Icons name="plus" size={18} color='black'></Icons>
+                        <Icons name="plus" size={18} color="black" />
                         <Text style={styles.text}>Create new label</Text>
                     </View>
                 </TouchableOpacity>
@@ -38,42 +38,41 @@ const DrawerContent = ({ navigation }) => {
                         <Text style={styles.text}>Archive</Text>
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Deleted')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Delete')}>
                     <View style={styles.itemStyle}>
-                        <AntDesign name="delete" size={18} color='black' />
+                        <AntDesign name="delete" size={18} color="black" />
                         <Text style={styles.text}>Deleted</Text>
                     </View>
                 </TouchableOpacity>
             </DrawerContentScrollView>
         </View>
-    )
-}
+    );
+};
 const styles = StyleSheet.create({
     screen:{
         flex:1,
     },
     titleStyle: {
         paddingLeft: 20,
-        marginBottom: 40
+        marginBottom: 40,
     },
     itemStyle: {
         flexDirection: 'row',
         marginLeft: 20,
         alignItems: 'center',
-        marginBottom: 30
+        marginBottom: 30,
     },
     textStyle: {
         fontSize: 22,
         fontWeight: 'bold',
-        color: 'orchid'
+        color: 'yellow',
     },
     text: {
         fontSize: 18,
         marginLeft: 20,
-        color: 'black'
+        color: 'black',
 
-    }
+    },
+});
 
-
-})
 export default DrawerContent;
