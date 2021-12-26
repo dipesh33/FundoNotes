@@ -14,12 +14,11 @@ const StackNav = () => {
 
   return (
       <Stack.Navigator
-        initialRouteName="Dashboard"
+        initialRouteName="DrawerNav"
         drawerContent={props => <DrawerContent{...props} />}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name={'Login'} component={Login} />
         <Stack.Screen name={'Signup'} component={Signup} />
-        <Stack.Screen name={'Dashboard'} component={Dashboard} />
         <Stack.Screen name={'DrawerNav'} component={DrawerNav} />
         <Stack.Screen name={'CreateNote'} component={CreateNote} />
         <Stack.Screen name={'Delete'} component={Delete}/>

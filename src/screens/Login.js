@@ -32,7 +32,7 @@ const Login = ({navigation}) => {
     return valid;
   };
   const navigateToDashBoardPage = () => {
-    navigation.navigate('Dashboard');
+    navigation.navigate('DrawerNav');
   };
 
   const onSubmit = () => {

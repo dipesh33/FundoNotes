@@ -14,7 +14,7 @@ const DrawerContent = ({ navigation }) => {
                         Fundoo Notes
                     </Text>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('DashBoard')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Dashboard')}>
                     <View style={styles.itemStyle}>
                         <AntDesign name="bulb1" size={18} color="black" />
                         <Text style={styles.text}>Notes</Text>
