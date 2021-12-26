@@ -41,8 +41,23 @@ const Dashboard = ({navigation}) => {
     <View style={styles.container}>
       {/* Header Tile */}
       <View style={styles.searchBar}>
+        <View style={styles.space}>
+          <TouchableOpacity onPress={() => setIsList(!isList)}>
+            {isList ? (
+              <Icons
+                name="view-agenda-outline"
+                size={25}
+                color="white"
+              />
+            ) : (
+              <Feather
+                name="grid"
+                color="white"
+                size={25}
+              />
+            )}
+          </TouchableOpacity>
         <TouchableOpacity
-          style={styles.menu}
           onPress={() => navigation.openDrawer()}>
           <MaterialIcon
             color="white"
@@ -51,24 +66,10 @@ const Dashboard = ({navigation}) => {
             style={{padding: 5}}
           />
         </TouchableOpacity>
-        {/* <TouchableOpacity onPress={() => setIsList(!isList)}>
-            {isList ? (
-              <Icons
-                name="view-agenda-outline"
-                size={25}
-                color="black"
-                style={{marginLeft: 0}}
-              />
-            ) : (
-              <Feather
-                name="grid"
-                color="black"
-                size={25}
-                style={{marginLeft: 0}}
-              />
-            )}
-          </TouchableOpacity> */}
+        </View>
+        <View style={styles.searchBox}>
         <TextInput style={styles.searchBar2} placeholder='Seach your notes!'onChangeText={text => this.searchUser(text)}/>
+        </View>
       </View>
       <View>
         <ScrollView scrollEnabled={true}>
@@ -137,19 +138,13 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     backgroundColor: '#F7CD2E',
-    height: height * 0.20,
+    flexDirection: 'row',
   },
   searchBar2: {
-    alignItems: 'flex-end',
-    backgroundColor: 'white',
-    paddingLeft: '20%',
-    width: '90%',
-    borderRadius: 10,
-    marginTop: '5%',
-    marginLeft: 15,
   },
   menu: {
-    marginTop: '5%',
+    // marginTop: '5%',
+    alignSelf: 'flex-start',
     paddingLeft: '5%',
   },
   Footer: {
@@ -165,6 +160,14 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 18,
     fontStyle: 'italic',
+  },
+  space:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  searchBox:{
+    flexDirection: 'column-reverse',
   },
 });
 
