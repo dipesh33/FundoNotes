@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Color, Padding, Size, Border, Font} from './Theme';
 
+
 export const styles = StyleSheet.create({
   container: {
     flex: Size.FLEX,
@@ -198,7 +199,7 @@ export const styles = StyleSheet.create({
   },
   //Archive
   header: {
-    height: '8%',
+    height: '9%',
     backgroundColor: Color.SECONDARY,
     flexDirection: 'row',
     padding: Padding.SECONADARY_PADDING,

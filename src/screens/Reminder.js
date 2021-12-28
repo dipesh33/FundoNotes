@@ -6,9 +6,11 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import {styles} from '../utility/GlobalStyle';
 import { Color, Padding, Size } from '../utility/Theme';
+import useLocalisation from '../localisation/useLocalisation';
 
 const Reminder = ({navigation}) => {
   const [isList, setIsList] = useState(false);
+  const dictonary = useLocalisation('EN');
 
   return (
     <View style={styles.container}>
@@ -23,7 +25,7 @@ const Reminder = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.archiveTitle}>Reminders</Text>
+          <Text style={styles.archiveTitle}>{dictonary.REMINDER_TEXT}</Text>
         </View>
         <View>
           <TouchableOpacity>

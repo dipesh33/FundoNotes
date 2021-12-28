@@ -6,9 +6,12 @@ import NoteCard from '../component/NoteCard';
 import { fetchDeleteData } from '../service/NoteService';
 import {styles} from '../utility/GlobalStyle';
 import { Size,Padding, Color } from '../utility/Theme';
+import useLocalisation from '../localisation/useLocalisation';
 
 const Delete = ({navigation}) => {
   const [noteData, setNoteData] = useState([]);
+
+  const dictonary = useLocalisation('EN');
 
   const fetchData = async () => {
     let data = await fetchDeleteData();
@@ -35,7 +38,7 @@ const Delete = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.archiveTitle}>Delete</Text>
+          <Text style={styles.archiveTitle}>{dictonary.DELETED_TEXT}</Text>
         </View>
         <View>
           <TouchableOpacity>

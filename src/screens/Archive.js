@@ -8,15 +8,23 @@ import NoteCard from '../component/NoteCard';
 import Footer from '../component/Footer';
 import { styles } from '../utility/GlobalStyle';
 import {Color, Size, Padding} from '../utility/Theme';
+import {useDispatch} from 'react-redux';
+import {GridView} from '../redux/actions';
+import {useSelector} from 'react-redux';
+import useLocalisation from '../localisation/useLocalisation';
 
 const Archive = ({navigation}) => {
   const [noteData, setNoteData] = useState([]);
-  const [isList, setIsList] = useState(false);
+
+  //Redux
+  const isList = useSelector(state => state.isList);
+  const dispatch = useDispatch();
+
+  const dictonary = useLocalisation('EN');
 
   const fetchData = async () => {
     let data = await fetchArchiveData();
     setNoteData(data);
-    console.log('..........', data);
   };
 
   React.useEffect(() => {
@@ -40,7 +48,7 @@ const Archive = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.archiveTitle}>Archive</Text>
+          <Text style={styles.archiveTitle}>{dictonary.ARCHIVE_TEXT}</Text>
         </View>
         <View>
           <TouchableOpacity>
@@ -53,7 +61,7 @@ const Archive = ({navigation}) => {
           </TouchableOpacity>
         </View>
         <View>
-          <TouchableOpacity onPress={() => setIsList(!isList)}>
+          <TouchableOpacity onPress={() => dispatch(GridView())}>
             {isList ? (
               <Feather
                 name="grid"

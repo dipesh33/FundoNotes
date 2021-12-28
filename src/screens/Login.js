@@ -1,12 +1,8 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import { handleSignin } from '../service/AuthService';
-import { styles } from '../utility/GlobalStyle';
+import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {handleSignin} from '../service/AuthService';
+import {styles} from '../utility/GlobalStyle';
+import {TextField} from 'react-native-material-textfield';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -58,6 +54,12 @@ const Login = ({navigation}) => {
           onChangeText={setEmail}
           errorText={errors.mail}
         />
+        {/* <TextField
+          label="Email"
+          value={email}
+          onChangeText={setEmail}
+          errorText={errors.mail}
+        /> */}
         <TextInput
           placeholder="Password"
           placeholderTextColor={'black'}
