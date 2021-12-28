@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, {useRef} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
   TextInput,
 } from 'react-native';
@@ -13,6 +13,12 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {addUpdateNote} from '../service/NoteService';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {BottomTabSheet} from '../component/BottomSheet';
+import {styles} from '../utility/GlobalStyle';
+import {
+  Color,
+  Size,
+} from '../utility/Theme';
+
 
 const CreateNote = ({navigation, route}) => {
   const [title, setTitle] = React.useState(
@@ -53,29 +59,29 @@ const CreateNote = ({navigation, route}) => {
   };
   const BottomSheet = () => {
     return (
-      <View style={styles.screen}>
+      <View style={styles.container}>
         <View>
           <TouchableOpacity onPress={onDeleteButton}>
             <View style={styles.itemStyle}>
-              <AntDesign name="delete" size={20} color="black" />
+              <AntDesign name="delete" size={Size.ICON_MEDIUM} color={Color.HEADING} />
               <Text style={styles.text}>Delete</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.itemStyle}>
-              <Icons name="content-copy" size={20} color="black" />
+              <Icons name="content-copy" size={Size.ICON_MEDIUM} color={Color.HEADING} />
               <Text style={styles.text}>Make a copy</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.itemStyle}>
-              <SimpleLineIcons name="share" size={20} color="black" />
+              <SimpleLineIcons name="share" size={Size.ICON_MEDIUM} color={Color.HEADING}/>
               <Text style={styles.text}>Share</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.itemStyle}>
-              <Icons name="label-outline" size={20} color="black" />
+              <Icons name="label-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
               <Text style={styles.text}>Labels</Text>
             </View>
           </TouchableOpacity>
@@ -85,11 +91,11 @@ const CreateNote = ({navigation, route}) => {
   };
 
   return (
-    <View style={styles.screen2}>
+    <View style={[styles.screen, styles.screen2]}>
       <View style={styles.topBar}>
         <View style={{flex: 1, padding: 12}}>
           <TouchableOpacity onPress={onBackButton}>
-            <Icons name="arrow-left" size={25} color="black" />
+            <Icons name="arrow-left" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
         </View>
         <View style={styles.topIcon}>
@@ -97,22 +103,22 @@ const CreateNote = ({navigation, route}) => {
             {
                 isPin ? <Icons
                 name="pin"
-                size={25}
-                color="#242B2E"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
                 style={{marginLeft: 100}}
               />
-              : <Icons name="pin-outline" color="black" size={25} style={{ marginLeft: 100 }} />
+              : <Icons name="pin-outline" color={Color.HEADING} size={Size.ICON_MEDIUM} style={{ marginLeft: 100 }} />
             }
           </TouchableOpacity>
         </View>
         <View style={styles.topIcon}>
           <TouchableOpacity>
-            <Icons name="bell-plus-outline" size={25} color="#242B2E" />
+            <Icons name="bell-plus-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
         </View>
         <View style={styles.topIcon}>
           <TouchableOpacity onPress={onArchiveButton}>
-            <Ionicons name="archive-outline" size={25} color="#242B2E" />
+            <Ionicons name="archive-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
         </View>
       </View>
@@ -140,7 +146,7 @@ const CreateNote = ({navigation, route}) => {
       <View style={styles.bottomStyle}>
         <View style={styles.bottomIcon}>
           <TouchableOpacity onPress={() => refPlusRBSheet.current.open()}>
-            <Icons name="plus-box-outline" size={25} color="#242B2E" />
+            <Icons name="plus-box-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
           <RBSheet
             ref={refPlusRBSheet}
@@ -151,7 +157,7 @@ const CreateNote = ({navigation, route}) => {
         </View>
         <View style={styles.bottomIcon}>
           <TouchableOpacity>
-            <Icons name="palette-outline" size={25} color="#242B2E" />
+            <Icons name="palette-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
           {/* <RBSheet
             ref={refPlusRBSheet}
@@ -160,14 +166,14 @@ const CreateNote = ({navigation, route}) => {
 
             </RBSheet> */}
         </View>
-        <View style={{flex: 1, alignItems: 'center'}}>
+        <View style={styles.editedText}>
           <TouchableOpacity>
-            <Text style={{color: 'black'}}>Edited </Text>
+            <Text style={styles.textColor}>Edited </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.bottomIcon}>
           <TouchableOpacity onPress={() => refRBSheet.current.open()}>
-            <Icons name="dots-vertical" size={25} color="#242B2E" />
+            <Icons name="dots-vertical" size={Size.ICON_MEDIUM} color={Color.HEADING} />
           </TouchableOpacity>
           <RBSheet
             ref={refRBSheet}
@@ -181,44 +187,4 @@ const CreateNote = ({navigation, route}) => {
   );
 };
 
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  screen2: {
-    flex: 1,
-    backgroundColor: 'transparent',
-  },
-  topBar: {
-    padding: 0,
-    flexDirection: 'row',
-    marginHorizontal: 5,
-    marginTop: 10,
-  },
-  topIcon: {
-    padding: 12,
-  },
-  bottomStyle: {
-    padding: 2,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  bottomIcon: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 12,
-  },
-  itemStyle: {
-    flexDirection: 'row',
-    marginLeft: 20,
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  text: {
-    fontSize: 18,
-    marginLeft: 20,
-    color: 'black',
-  },
-});
 export default CreateNote;

@@ -8,13 +8,14 @@ import DrawerNav from './DrawerNav';
 import DrawerContent from '../component/DrawerContents';
 import Delete from '../screens/Delete';
 import Archive from '../screens/Archive';
+import SearchNote from '../screens/SearchNote';
 
 const StackNav = () => {
   const Stack = createStackNavigator();
 
   return (
       <Stack.Navigator
-        initialRouteName="DrawerNav"
+      initialRouteName="DrawerNav"
         drawerContent={props => <DrawerContent{...props} />}
         screenOptions={{headerShown: false}}>
         <Stack.Screen name={'Login'} component={Login} />
@@ -23,6 +24,7 @@ const StackNav = () => {
         <Stack.Screen name={'CreateNote'} component={CreateNote} />
         <Stack.Screen name={'Delete'} component={Delete}/>
         <Stack.Screen name={'Archive'} component={Archive}/>
+        <Stack.Screen name={'SearchNote'} component={SearchNote}/>
       </Stack.Navigator>
   );
 };

@@ -1,11 +1,13 @@
-import React, { useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import {fetchArchiveData} from '../service/NoteService';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import NoteCard from '../component/NoteCard';
 import Footer from '../component/Footer';
+import { styles } from '../utility/GlobalStyle';
+import {Color, Size, Padding} from '../utility/Theme';
 
 const Archive = ({navigation}) => {
   const [noteData, setNoteData] = useState([]);
@@ -25,44 +27,46 @@ const Archive = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <MaterialIcon
-              color="black"
+              color={Color.HEADING}
               name="menu"
-              size={25}
-              style={{padding: 10}} />
+              size={Size.ICON_MEDIUM}
+              style={{padding: Padding.SECONADARY_PADDING}}
+            />
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.titleStyle}>Archive</Text>
+          <Text style={styles.archiveTitle}>Archive</Text>
         </View>
         <View>
           <TouchableOpacity>
             <MaterialIcon
-              color="black"
+               color={Color.HEADING}
               name="search"
-              size={25}
-              style={{padding: 10, marginLeft: 140}} />
+              size={Size.ICON_MEDIUM}
+              style={{padding: Padding.SECONADARY_PADDING, marginLeft: 140}}
+            />
           </TouchableOpacity>
         </View>
         <View>
           <TouchableOpacity onPress={() => setIsList(!isList)}>
             {isList ? (
-              <Icons
-                name="view-agenda-outline"
-                size={25}
-                color="black"
-                style={{marginLeft: 10, padding: 10}}
-              />
-            ) : (
               <Feather
                 name="grid"
-                color="black"
-                size={25}
-                style={{marginLeft: 10, padding: 10}}
+                color={Color.HEADING}
+                size={Size.ICON_MEDIUM}
+                style={{marginLeft: 10, padding: Padding.SECONADARY_PADDING}}
+              />
+            ) : (
+              <Icons
+                name="view-agenda-outline"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
+                style={{marginLeft: 10, padding: Padding.SECONADARY_PADDING}}
               />
             )}
           </TouchableOpacity>
@@ -70,6 +74,7 @@ const Archive = ({navigation}) => {
       </View>
       <View>
         <FlatList
+        style={noteData}
           data={noteData}
           renderItem={({item}) => (
             <TouchableOpacity
@@ -83,30 +88,11 @@ const Archive = ({navigation}) => {
           )}
         />
       </View>
-      <View style={styles.view}>
+      <View style={styles.Footer}>
         <Footer />
       </View>
     </View>
   );
 };
-const styles = StyleSheet.create({
-  view: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    color: 'black',
-  },
-  header: {
-    height: '9%',
-    backgroundColor: 'lavender',
-    flexDirection: 'row',
-    padding: 10,
-  },
-  titleStyle: {
-    padding: 10,
-    color: 'black',
-    fontSize: 18,
-  },
-});
 
 export default Archive;

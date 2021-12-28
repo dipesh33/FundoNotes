@@ -2,11 +2,11 @@ import React, {useState} from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
 import { handleSignin } from '../service/AuthService';
+import { styles } from '../utility/GlobalStyle';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -21,11 +21,11 @@ const Login = ({navigation}) => {
     const temp = {};
     if (!regex.test(email)) {
       valid = false;
-      temp['mail'] = 'Enter the Email';
+      temp.mail = 'Enter the Email';
     }
     if (!password) {
       valid = false;
-      temp['pass'] = 'Enter the Password';
+      temp.pass = 'Enter the Password';
     }
     setErrors(temp);
 
@@ -79,75 +79,5 @@ const Login = ({navigation}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    backgroundColor: '#009387',
-  },
-  topView: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    paddingHorizontal: 20,
-    paddingBottom: 50,
-  },
-  bottomView: {
-    flex: 3,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    paddingHorizontal: 20,
-    paddingVertical: 30,
-  },
-  titleText: {
-    fontSize: 35,
-    color: 'white',
-  },
-  welcomeText: {
-    fontSize: 25,
-    // fontStyle:"italic",
-    fontWeight: 'bold',
-    color: 'black',
-  },
-  Text: {
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
-  textInput: {
-    width: '90%',
-    borderWidth: 1,
-    backgroundColor: '#f2f2f2',
-    borderColor: 'white',
-    height: 52,
-    borderRadius: 10,
-    paddingLeft: 15,
-    marginTop: 20,
-    marginLeft: 15,
-  },
-  button: {
-    width: '90%',
-    color: 'white',
-    height: 52,
-    backgroundColor: 'mediumaquamarine',
-    borderRadius: 10,
-    marginTop: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: 15,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 19,
-  },
-  TextButton: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 20,
-  },
-});
 
 export default Login;

@@ -19,6 +19,7 @@ export const registration = async (email, password, fullName, callBack) => {
       callBack();
     } catch (error) {
       console.log(error.message);
+      // eslint-disable-next-line no-alert
       alert(error.message);
     }
   };

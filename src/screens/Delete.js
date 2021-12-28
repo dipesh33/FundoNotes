@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import {Text, View, TouchableOpacity, StyleSheet, FlatList} from 'react-native';
+import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import NoteCard from '../component/NoteCard';
 import { fetchDeleteData } from '../service/NoteService';
+import {styles} from '../utility/GlobalStyle';
+import { Size,Padding, Color } from '../utility/Theme';
 
 const Delete = ({navigation}) => {
   const [noteData, setNoteData] = useState([]);
@@ -21,27 +23,27 @@ const Delete = ({navigation}) => {
   }, [navigation]);
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
       <View style={styles.header}>
         <View>
           <TouchableOpacity onPress={() => navigation.openDrawer()}>
             <MaterialIcon
-              color="black"
+              color={Color.HEADING}
               name="menu"
-              size={25}
-              style={{padding: 10}} />
+              size={Size.ICON_MEDIUM}
+              style={{padding: Padding.SECONADARY_PADDING}} />
           </TouchableOpacity>
         </View>
         <View>
-          <Text style={styles.titleStyle}>Delete</Text>
+          <Text style={styles.archiveTitle}>Delete</Text>
         </View>
         <View>
           <TouchableOpacity>
             <Icons
               name="dots-vertical"
-              size={25}
-              color="black"
-              style={{padding: 10, marginLeft: 200}}
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+              style={{padding: Padding.SECONADARY_PADDING, marginLeft: 200}}
             />
           </TouchableOpacity>
         </View>
@@ -62,17 +64,4 @@ const Delete = ({navigation}) => {
     </View>
   );
 };
-const styles = StyleSheet.create({
-  header: {
-    height: '9%',
-    backgroundColor: 'lavender',
-    flexDirection: 'row',
-    padding: 10,
-  },
-  titleStyle: {
-    padding: 10,
-    color: 'black',
-    fontSize: 18,
-  },
-});
 export default Delete;

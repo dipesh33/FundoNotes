@@ -1,35 +1,31 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
+import {getNewHeight, getNewWidth} from '../utility/Dimension';
 
-const NoteCard = (props) => {
-    console.log('Prop:', props);
-    return (
-        <View style={styles.screen}>
-            <Text style={styles.cardContent}>
-                {props.title || ''}
-            </Text>
-            <Text>
-                {props.note || ''}
-            </Text>
-        </View>
-    );
+const newHeight = getNewHeight(10);
+const newWidth = getNewWidth(12);
+
+const NoteCard = props => {
+  return (
+    <View style={styles.noteCard}>
+      <Text style={styles.cardContent}>{props.title || ''}</Text>
+      <Text style={styles.cardContent}>{props.note || ''}</Text>
+    </View>
+  );
 };
 
 export default NoteCard;
 
 const styles = StyleSheet.create({
-    screen:{
-        borderRadius:6,
-        elevation:3,
-        backgroundColor:'#fff',
-        // shadowOffset:{width:1, height:1},
-        // shadowColor: "#333",
-        // shadowOpacity:0.3,
-        marginHorizontal:4,
-        marginVertical:6,
-    },
-    cardContent:{
-        marginHorizontal:18,
-        marginVertical:10,
-    },
+  noteCard: {
+    borderRadius: 6,
+    elevation: 3,
+    backgroundColor: '#fff',
+    marginHorizontal: newWidth,
+    marginVertical: newHeight,
+  },
+  cardContent: {
+    marginHorizontal: 18,
+    marginVertical: 10,
+  },
 });

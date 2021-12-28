@@ -3,23 +3,30 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  TextInput,
 } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { styles } from '../utility/GlobalStyle';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Feather from 'react-native-vector-icons/Feather';
 import Footer from '../component/Footer';
 import {fetchNotes} from '../service/NoteService';
 import NoteCard from '../component/NoteCard';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {useDispatch} from 'react-redux';
+import {GridView} from '../redux/actions';
+import {useSelector} from 'react-redux';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { LogBox } from 'react-native';
+import useLocalisation from '../localisation/useLocalisation';
+import { Color, Padding, Size } from '../utility/Theme';
 
-
+LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 
 const Dashboard = ({navigation}) => {
   const [noteData, setNoteData] = React.useState([]);
-  const [isList, setIsList] = React.useState(false);
+
+  //Localisation
+  const dictonary = useLocalisation('EN');
 
   const fetchData = async () => {
     let data = await fetchNotes();
@@ -33,54 +40,48 @@ const Dashboard = ({navigation}) => {
     return unsubscribe;
   }, [navigation]);
 
-  const searchUser = ({textToSearch}) => {
-    alert(textToSearch);
-  };
+  //Redux
+  const isList = useSelector(state => state.isList);
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.container}>
       {/* Header Tile */}
       <View style={styles.searchBar}>
         <View style={styles.space}>
-          <TouchableOpacity onPress={() => setIsList(!isList)}>
+          <TouchableOpacity onPress={() => dispatch(GridView())}>
             {isList ? (
-              <Icons
-                name="view-agenda-outline"
-                size={25}
-                color="white"
-              />
+              <Feather name="grid" color={Color.PRIMARY} size={Size.ICON_MEDIUM} />
             ) : (
-              <Feather
-                name="grid"
-                color="white"
-                size={25}
-              />
+              <Icons name="view-agenda-outline" size={Size.ICON_MEDIUM} color= {Color.PRIMARY} />
             )}
           </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.openDrawer()}>
-          <MaterialIcon
-            color="white"
-            name="menu"
-            size={35}
-            style={{padding: 5}}
-          />
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.openDrawer()}>
+            <MaterialIcon
+              color= {Color.PRIMARY}
+              name="menu"
+              size={35}
+              style={{padding: Padding.FIRST_PADDING}}
+            />
+          </TouchableOpacity>
         </View>
-        <View style={styles.searchBox}>
-        <TextInput style={styles.searchBar2} placeholder='Seach your notes!'onChangeText={text => this.searchUser(text)}/>
+        <View style={styles.searchBar1}>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchNote')}>
+            <Text style={styles.text1}>{dictonary.SEARCH_BAR_TEXT}</Text>
+          </TouchableOpacity>
         </View>
       </View>
       <View>
-        <ScrollView scrollEnabled={true}>
+      <ScrollView>
+        <SafeAreaView>
           <View>
-            <Text style={styles.title}>Pinned</Text>
+            <Text style={styles.title}>{dictonary.PINNED_TEXT}</Text>
             <FlatList
-              scrollEnabled={false}
               data={noteData}
               renderItem={({item}) =>
                 item.isPin === true ? (
                   <TouchableOpacity
+                    style={{width: isList ? '50%' : '100%'}}
                     onPress={() => {
                       navigation.navigate('CreateNote', {
                         editData: item,
@@ -97,7 +98,7 @@ const Dashboard = ({navigation}) => {
             />
           </View>
           <View>
-            <Text style={styles.title}>Other</Text>
+            <Text style={styles.title}>{dictonary.OTHER_TEXT}</Text>
             <FlatList
               data={noteData}
               renderItem={({item}) =>
@@ -105,6 +106,7 @@ const Dashboard = ({navigation}) => {
                 item.isPin === true ||
                 item.isDelete === true ? null : (
                   <TouchableOpacity
+                    style={{width: isList ? '50%' : '100%'}}
                     onPress={() => {
                       navigation.navigate('CreateNote', {
                         editData: item,
@@ -120,6 +122,7 @@ const Dashboard = ({navigation}) => {
               keyExtractor={item => item.noteId}
             />
           </View>
+        </SafeAreaView>
         </ScrollView>
       </View>
       {/* Footer */}
@@ -129,46 +132,5 @@ const Dashboard = ({navigation}) => {
     </View>
   );
 };
-
-const {height} = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  searchBar: {
-    backgroundColor: '#F7CD2E',
-    flexDirection: 'row',
-  },
-  searchBar2: {
-  },
-  menu: {
-    // marginTop: '5%',
-    alignSelf: 'flex-start',
-    paddingLeft: '5%',
-  },
-  Footer: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 0,
-    color: 'black',
-  },
-  Grid: {
-    flexDirection: 'row-reverse',
-  },
-  title:{
-    color: 'black',
-    fontSize: 18,
-    fontStyle: 'italic',
-  },
-  space:{
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  searchBox:{
-    flexDirection: 'column-reverse',
-  },
-});
 
 export default Dashboard;
