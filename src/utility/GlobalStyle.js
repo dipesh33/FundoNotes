@@ -81,8 +81,23 @@ export const styles = StyleSheet.create({
   },
   //Dashboard
   searchBar: {
+    height: '10%',
+    backgroundColor: Color.TRANSPARENT,
+    justifyContent: 'center',
+    paddingVertical: Padding.VERTICAL_PADDING,
+  },
+  searchBar2 : {
+    height: 50,
     backgroundColor: Color.SECONDARY,
+    borderRadius: Border.BORDER,
     flexDirection: 'row',
+    alignItems: 'center',
+  },
+  loader:{
+    alignItems: 'center',
+    height: 500,
+    width: 400,
+    justifyContent: 'center',
   },
   searchBar1: {
     marginLeft: '20%',
@@ -111,12 +126,17 @@ export const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   space: {
+    height: 50,
+    backgroundColor: Color.SECONDARY,
+    borderRadius: 30,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
   },
   searchBox: {
     flexDirection: 'column-reverse',
+  },
+  listStyle: {
+    marginLeft: 120,
   },
   //Notecard
   footer: {

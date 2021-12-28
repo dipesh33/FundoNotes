@@ -66,6 +66,7 @@ export const Border = {
     LIGHT_BORDER: 0.8,
     MEDIUM_BORDER: 1,
     BORDER_RADIUS: 50,
+    BORDER : 30,
     ROUND_CORNER: 20,
     CORNER: 10,
     BUTTON_BORDER: 10,

@@ -10,7 +10,7 @@ const fetchNotesFromFirestore = async uid => {
     .then(querySnapshot => {
       console.log('Total Notes: ', querySnapshot.size);
       querySnapshot.forEach(documentSnapshot => {
-        console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+        //console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
         const docData = documentSnapshot.data();
         docData.noteId = documentSnapshot.id;
         array.push(docData);
