@@ -1,5 +1,7 @@
 const initialState = {
   isList: false,
+  uid: '',
+  label: [],
 };
 
 const reducers = (state = initialState, action) => {
@@ -9,6 +11,17 @@ const reducers = (state = initialState, action) => {
         ...state,
         isList: !state.isList,
       };
+      case 'SET_UID':
+        return {
+            ...state,
+            uid: action.payload,
+
+        };
+      case 'SET_LABEL_DATA':
+        return {
+            ...state,
+            labelData: action.payload,
+        };
     default:
       return state;
   }

@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {handleSignin} from '../service/AuthService';
 import {styles} from '../utility/GlobalStyle';
-import {TextField} from 'react-native-material-textfield';
+import { Color } from '../utility/Theme';
+import { FloatingTitleTextInputField } from '../component/TextBox';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -46,11 +47,13 @@ const Login = ({navigation}) => {
       <View style={styles.bottomView}>
         <Text style={styles.welcomeText}>Welcome,{'\n'}Login now</Text>
         <Text style={styles.Text}>If you are new/ Create new</Text>
+        <View style={styles.fieldBar}>
         <TextInput
           placeholder="Email"
-          placeholderTextColor={'black'}
+          placeholderTextColor={Color.HEADING}
           style={styles.textInput}
           value={email}
+          selectionColor={Color.HEADING}
           onChangeText={setEmail}
           errorText={errors.mail}
         />
@@ -61,8 +64,8 @@ const Login = ({navigation}) => {
           errorText={errors.mail}
         /> */}
         <TextInput
-          placeholder="Password"
-          placeholderTextColor={'black'}
+          placeholder ="Password"
+          placeholderTextColor={Color.HEADING}
           style={styles.textInput}
           value={password}
           onChangeText={setPassword}
@@ -77,6 +80,7 @@ const Login = ({navigation}) => {
           onPress={() => navigation.navigate('Signup')}>
           <Text style={styles.SignUpText}>Don't have an account? Sign up</Text>
         </TouchableOpacity>
+        </View>
       </View>
     </View>
   );

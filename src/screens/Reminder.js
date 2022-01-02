@@ -54,7 +54,7 @@ const Reminder = ({navigation}) => {
                   name="view-agenda-outline"
                   size={Size.ICON_MEDIUM}
                   color= {Color.HEADING}
-                  style={{marginLeft: Padding.SECONADARY_PADDING, padding: Padding.SECONADARY_PADDING}} />
+                  style={{marginLeft: 10, padding: Padding.SECONADARY_PADDING}} />
               </View>
             </TouchableOpacity>
           )}

@@ -34,9 +34,9 @@ export const fetchArchiveData = async() => {
     return firestore().collection('keepData').doc(uid).collection('Notes')
     .get()
     .then(querySnapshot => {
-        console.log(querySnapshot.size);
+        // console.log(querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-            console.log('User ID : ', documentSnapshot.id, documentSnapshot.data());
+            // console.log('User ID : ', documentSnapshot.id, documentSnapshot.data());
             const docData = documentSnapshot.data();
             if (docData.isArchive){
                 docData.noteId = documentSnapshot.id;
@@ -55,9 +55,9 @@ export const fetchDeleteData = async() => {
     .where('isDelete', '==', true)
     .get()
     .then(querySnapshot => {
-        console.log(querySnapshot.size);
+        // console.log(querySnapshot.size);
         querySnapshot.forEach(documentSnapshot => {
-            console.log('UserID: ', querySnapshot.id, documentSnapshot.data());
+            // console.log('UserID: ', querySnapshot.id, documentSnapshot.data());
             const docData = documentSnapshot.data();
             docData.noteId = documentSnapshot.id;
             array.push(docData);
@@ -68,12 +68,12 @@ export const fetchDeleteData = async() => {
 
 export const addUpdateNote = async(noteData, op, callback, noteId) => {
     const uid = await getUid();
-    console.log(uid);
+    // console.log(uid);
     const data = firestore().collection('keepData').doc(uid);
     let ref;
     if (op === 'add'){
         ref = data.collection('Notes');
-        console.log('Notes Added');
+        // console.log('Notes Added');
     }
     else {
         ref = data.collection('Notes').doc(noteId);
@@ -92,6 +92,6 @@ export const delteNotes = async (noteId) => {
     .doc(noteId)
     .delete()
     .then(() => {
-        console.log('note deleted');
+        // console.log('note deleted');
     });
 };

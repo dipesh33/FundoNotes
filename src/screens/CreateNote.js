@@ -18,6 +18,7 @@ import {
   Color,
   Size,
 } from '../utility/Theme';
+import { Shared } from '../component/Share';
 
 
 const CreateNote = ({navigation, route}) => {
@@ -73,13 +74,13 @@ const CreateNote = ({navigation, route}) => {
               <Text style={styles.text}>Make a copy</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={Shared}>
             <View style={styles.itemStyle}>
               <SimpleLineIcons name="share" size={Size.ICON_MEDIUM} color={Color.HEADING}/>
               <Text style={styles.text}>Share</Text>
             </View>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('CreateLabel')}>
             <View style={styles.itemStyle}>
               <Icons name="label-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
               <Text style={styles.text}>Labels</Text>

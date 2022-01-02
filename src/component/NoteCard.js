@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {getNewHeight, getNewWidth} from '../utility/Dimension';
 
 const newHeight = getNewHeight(10);
-const newWidth = getNewWidth(12);
+const newWidth = getNewWidth(10);
 
 const NoteCard = props => {
   return (
@@ -27,5 +27,6 @@ const styles = StyleSheet.create({
   cardContent: {
     marginHorizontal: 18,
     marginVertical: 10,
+    color: 'black',
   },
 });

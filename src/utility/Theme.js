@@ -51,16 +51,6 @@ export const Padding = {
     VERTICAL_PADDING: 30,
 };
 
-// export const Margin = {
-//     PRIMARY_MARGIN: 8,
-//     SECONDARY_MARGIN: 30,
-//     BUTTON_MARGIN:
-//       width === 411.42857142857144
-//         ? Dimensions.get('window').width * 0.27
-//         : Dimensions.get('window').width * 0.2,
-//     BOTTOM_MARGIN: '5%',
-// };
-
 export const Border = {
     THICK_BORDER: 8,
     LIGHT_BORDER: 0.8,

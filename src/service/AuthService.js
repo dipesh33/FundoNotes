@@ -9,16 +9,16 @@ export const registration = async (email, password, fullName, callBack) => {
         email,
         password
       );
-      console.log('.........................');
+      // console.log('.........................');
       await firebase.firestore().collection('users').doc(userData.user.uid).set({
         FullName: fullName,
         Email: email,
       });
-      console.log(userData.user.uid);
-      console.log('user added');
+      // console.log(userData.user.uid);
+      // console.log('user added');
       callBack();
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       // eslint-disable-next-line no-alert
       alert(error.message);
     }
@@ -28,8 +28,8 @@ export const registration = async (email, password, fullName, callBack) => {
     try {
       const userUid = await auth().signInWithEmailAndPassword(email, password);
       await AsyncStorage.setItem('uid', userUid.user.uid);
-      console.log('id', (await userUid).user.uid);
-      console.log('Uid stored in AsyncStorage');
+      // console.log('id', (await userUid).user.uid);
+      // console.log('Uid stored in AsyncStorage');
       callback();
     } catch (e) {
       console.log(e.message);

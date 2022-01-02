@@ -1,6 +1,9 @@
-import {StyleSheet} from 'react-native';
-import {Color, Padding, Size, Border, Font} from './Theme';
+import {StyleSheet, Dimensions} from 'react-native';
+import {Color, Padding, Size, Border, Font, Height, Width} from './Theme';
 
+
+const widthOfScreen = Dimensions.get('screen').width;
+const heightOfScreen = Dimensions.get('screen').height;
 
 export const styles = StyleSheet.create({
   container: {
@@ -37,17 +40,22 @@ export const styles = StyleSheet.create({
   Text: {
     fontSize: Font.PRIMARY,
     fontStyle: 'italic',
+    color: 'grey',
   },
   textInput: {
     width: '90%',
     borderWidth: 1,
     backgroundColor: Color.PLACE_HOLDER_COLOR,
     borderColor: Color.PRIMARY,
-    height: 52,
+    // height: 52,
     borderRadius: 10,
     paddingLeft: 15,
     marginTop: 20,
     marginLeft: Padding.INITIAL_PADDING,
+    color: Color.HEADING,
+  },
+  fieldBar: {
+    paddingTop: Padding.VERTICAL_PADDING,
   },
   button: {
     width: '90%',
@@ -81,20 +89,22 @@ export const styles = StyleSheet.create({
     borderBottomLeftRadius: Border.ROUND_CORNER,
   },
   //Dashboard
+  headings: {
+    paddingLeft: Padding.SECONADARY_PADDING,
+    paddingTop: Padding.INITIAL_PADDING,
+  },
   searchBar: {
-    height: '10%',
     backgroundColor: Color.TRANSPARENT,
     justifyContent: 'center',
-    paddingVertical: Padding.VERTICAL_PADDING,
+    paddingVertical: Padding.FIRST_PADDING,
   },
-  searchBar2 : {
-    height: 50,
+  searchBar2: {
     backgroundColor: Color.SECONDARY,
     borderRadius: Border.BORDER,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  loader:{
+  loader: {
     alignItems: 'center',
     height: 500,
     width: 400,
@@ -105,8 +115,9 @@ export const styles = StyleSheet.create({
     paddingTop: Padding.SECONADARY_PADDING,
   },
   text1: {
-    color: Color.PRIMARY,
-    fontSize: 18,
+    color: Color.HEADING,
+    fontSize: Font.PRIMARY,
+    paddingLeft: Padding.SECONADARY_PADDING,
   },
   menu: {
     alignSelf: 'flex-start',
@@ -187,10 +198,18 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     color: Color.HEADING,
   },
+  itemsStyle:{
+    flexDirection: 'row',
+    marginLeft: 20,
+    alignItems: 'center',
+    marginBottom: 20,
+    marginTop: 10,
+  },
   //Drawer Content
   titleStyle: {
     paddingLeft: Padding.PRIMARY_PADDING,
     marginBottom: 40,
+    paddingTop: Padding.INITIAL_PADDING,
   },
   textStyle: {
     fontSize: Font.PRIMARY,
@@ -257,4 +276,97 @@ export const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  header2: {
+    height: 70,
+    width: '100%',
+  },
+  container2: {
+    height: 60,
+    width: '100%',
+    flexDirection: 'row',
+    padding: 15,
+  },
+  createtxt: {
+    marginLeft: 30,
+    fontSize: 18,
+    color: 'black',
+  },
+  textBoxScreen: {
+    width: '100%',
+    borderRadius: 3,
+    borderStyle: 'solid',
+    borderWidth: 0.5,
+    height: 50,
+    marginVertical: 4,
+  },
+  textBoxInput: {
+    fontSize: 15,
+    marginTop: 5,
+    fontFamily: 'Avenir-Medium',
+    color: 'black',
+  },
+  titleBoxStyles: {
+    position: 'absolute',
+    fontFamily: 'Avenir-Medium',
+    left: 4,
+  },
+  // Labels
+  labelHead: {
+    height: 70,
+    width: '100%',
+  },
+  headingItem: {
+    flexDirection: 'row',
+  },
+  textLabel: {
+    paddingTop: Padding.INITIAL_PADDING,
+    fontSize: 20,
+    fontWeight: '400',
+    color: Color.HEADING,
+  },
+  horizontzlLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: 'grey',
+  },
+  exception:{
+    paddingTop: Padding.INITIAL_PADDING,
+  },
+  line:{
+    borderBottomColor: Color.HEADING,
+    borderBottomWidth: 1,
+  },
+  //Label
+  headerLabel: {
+    height: '12%',
+    flexDirection: 'row',
+    padding: 5,
+    backgroundColor: 'transparent',
+  },
+  titleLabel: {
+    marginLeft: 15,
+    color: 'black',
+    fontSize: 18,
+  },
+  label: {
+    borderColor: 'grey',
+    borderBottomWidth: 0.7,
+    borderTopWidth: 0.7,
+    flexDirection: 'row',
+  },
+  labelScreen: {
+    backgroundColor: 'red',
+    width: widthOfScreen,
+    height: heightOfScreen - 270,
+  },
+  labelText: {
+    fontSize: 20,
+    color: 'black',
+    marginLeft: 30,
+  },
+  check: {
+    padding: 10,
+    marginLeft: '35%',
+  },
+  
 });

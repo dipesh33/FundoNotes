@@ -14,7 +14,7 @@ import {useSelector} from 'react-redux';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {LogBox} from 'react-native';
 import useLocalisation from '../localisation/useLocalisation';
-import {Color, Size} from '../utility/Theme';
+import {Color, Padding, Size} from '../utility/Theme';
 import {Avatar} from 'react-native-elements';
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -24,9 +24,9 @@ const Dashboard = ({navigation}) => {
   const [pinData, setPinData] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
 
-    //Redux
-    const isList = useSelector(state => state.isList);
-    const dispatch = useDispatch();
+  //Redux
+  const isList = useSelector(state => state.isList);
+  const dispatch = useDispatch();
 
   //Localisation
   const dictonary = useLocalisation('EN');
@@ -38,14 +38,13 @@ const Dashboard = ({navigation}) => {
     let data = await fetchNotes();
     const pin = [];
     const unpin = [];
-    data.forEach((item) => {
+    data.forEach(item => {
       if (item.isPin && !item.isArchive && !item.delete) {
-          pin.push(item);
+        pin.push(item);
+      } else if (!item.isPin && !item.isArchive && !item.delete) {
+        unpin.push(item);
       }
-      else if (!item.isPin && !item.isArchive && !item.delete) {
-          unpin.push(item);
-      }
-  });
+    });
     setNoteData(unpin);
     setPinData(pin);
     setLoading(false);
@@ -60,10 +59,12 @@ const Dashboard = ({navigation}) => {
 
   if (isLoading) {
     return (
-        <Image resizeMode="center"
-            style={styles.loader}
-            source={{ uri: 'https://gfycat.com/fluidelderlyamericantoad' }} />
-            );
+      <Image
+        resizeMode="center"
+        style={styles.loader}
+        source={{uri: 'https://gfycat.com/fluidelderlyamericantoad'}}
+      />
+    );
   }
 
   return (
@@ -73,16 +74,15 @@ const Dashboard = ({navigation}) => {
           <View>
             <TouchableOpacity onPress={() => navigation.openDrawer()}>
               <MaterialIcon
-                color="black"
+                color={Color.HEADING}
                 name="menu"
-                size={25}
-                style={{padding: 10}}
+                size={Size.ICON_MEDIUM}
+                style={{padding: Padding.SECONADARY_PADDING}}
               />
             </TouchableOpacity>
           </View>
           <View>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('SearchNotes')}>
+            <TouchableOpacity onPress={() => navigation.navigate('SearchNote')}>
               <Text style={styles.text1}>{dictonary.SEARCH_BAR_TEXT}</Text>
             </TouchableOpacity>
           </View>
@@ -120,46 +120,46 @@ const Dashboard = ({navigation}) => {
         <ScrollView>
           <SafeAreaView>
             <View>
-              <Text style={styles.title}>{dictonary.PINNED_TEXT}</Text>
+              <View style={styles.headings}>
+                <Text style={styles.title}>{dictonary.PINNED_TEXT}</Text>
+              </View>
               <FlatList
                 data={pinData}
-                renderItem={({item}) =>
-                 (
-                    <TouchableOpacity
-                      style={{width: isList ? '50%' : '100%'}}
-                      onPress={() => {
-                        navigation.navigate('CreateNote', {
-                          editData: item,
-                          editId: item.noteId,
-                        });
-                      }}>
-                      <NoteCard {...item} />
-                    </TouchableOpacity>
-                  )
-                }
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    style={{width: isList ? '50%' : '100%'}}
+                    onPress={() => {
+                      navigation.navigate('CreateNote', {
+                        editData: item,
+                        editId: item.noteId,
+                      });
+                    }}>
+                    <NoteCard {...item} />
+                  </TouchableOpacity>
+                )}
                 numColumns={!isList ? 1 : 2}
                 key={!isList ? 1 : 2}
                 keyExtractor={item => item.noteId}
               />
             </View>
             <View>
-              <Text style={styles.title}>{dictonary.OTHER_TEXT}</Text>
+              <View style={styles.headings}>
+                <Text style={styles.title}>{dictonary.OTHER_TEXT}</Text>
+              </View>
               <FlatList
                 data={noteData}
-                renderItem={({item}) =>
-                 (
-                    <TouchableOpacity
-                      style={{width: isList ? '50%' : '100%'}}
-                      onPress={() => {
-                        navigation.navigate('CreateNote', {
-                          editData: item,
-                          editId: item.noteId,
-                        });
-                      }}>
-                      <NoteCard {...item} />
-                    </TouchableOpacity>
-                  )
-                }
+                renderItem={({item}) => (
+                  <TouchableOpacity
+                    style={{width: isList ? '50%' : '100%'}}
+                    onPress={() => {
+                      navigation.navigate('CreateNote', {
+                        editData: item,
+                        editId: item.noteId,
+                      });
+                    }}>
+                    <NoteCard {...item} />
+                  </TouchableOpacity>
+                )}
                 numColumns={!isList ? 1 : 2}
                 key={!isList ? 1 : 2}
                 keyExtractor={item => item.noteId}
