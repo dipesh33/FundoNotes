@@ -4,13 +4,6 @@ export const GridView = () => {
     };
 };
 
-export const setUserId = (uid) => {
-    return {
-        type: 'SET_UID',
-        payload: uid,
-    };
-};
-
 export const setLabelData = (labelData) => {
     return {
         type: 'SET_LABEL_DATA',

@@ -11,12 +11,6 @@ const reducers = (state = initialState, action) => {
         ...state,
         isList: !state.isList,
       };
-      case 'SET_UID':
-        return {
-            ...state,
-            uid: action.payload,
-
-        };
       case 'SET_LABEL_DATA':
         return {
             ...state,

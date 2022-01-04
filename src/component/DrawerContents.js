@@ -1,11 +1,10 @@
 import React, {useCallback} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {DrawerContentScrollView} from '@react-navigation/drawer';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {styles} from '../utility/GlobalStyle';
-import {Color, Size} from '../utility/Theme';
+import {Color, Font, Padding, Size} from '../utility/Theme';
 import useLocalisation from '../localisation/useLocalisation';
 import {fetchLabelsData} from '../service/LabelService';
 
@@ -58,25 +57,25 @@ const DrawerContent = ({navigation}) => {
         </View>
       </TouchableOpacity>
 
-      {labelData.length > 0 ? (
+      {/* {labelData.length > 0 ? (
         <View>
           <View style={styles.line} />
           {labelData.map(item => (
-            <TouchableOpacity style={{padding: 1, flexDirection: 'row'}}>
+            <TouchableOpacity style={{padding: 2, flexDirection: 'row'}}>
               <Icons
-                style={{padding: 17}}
+                style={{padding: Padding.INITIAL_PADDING}}
                 name="label-outline"
-                size={20}
-                color="black"
+                size={Size.ICON_SMALL}
+                color={Color.HEADING}
               />
-              <Text style={{fontSize: 18, color: 'black', padding: 10}}>
+              <Text style={{fontSize: Font.PRIMARY, color: Color.HEADING, padding: Padding.SECONADARY_PADDING}}>
                 {item.label}
               </Text>
             </TouchableOpacity>
           ))}
           <View style={styles.line} />
         </View>
-      ) : null}
+      ) : null} */}
 
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('EditLabel')}>

@@ -5,10 +5,9 @@ import Signup from '../screens/Signup';
 import CreateNote from '../screens/CreateNote';
 import DrawerNav from './DrawerNav';
 import DrawerContent from '../component/DrawerContents';
-import Delete from '../screens/Delete';
-import Archive from '../screens/Archive';
 import SearchNote from '../screens/SearchNote';
 import CreateLabel from '../screens/CreateLabel';
+
 
 const StackNav = () => {
   const Stack = createStackNavigator();
@@ -21,7 +20,7 @@ const StackNav = () => {
       <Stack.Screen name={'Login'} component={Login} />
       <Stack.Screen name={'Signup'} component={Signup} />
       <Stack.Screen name={'DrawerNav'} component={DrawerNav} />
-      <Stack.Screen name={'CreateNote'} component={CreateNote} /> 
+      <Stack.Screen name={'CreateNote'} component={CreateNote} />
       <Stack.Screen name={'SearchNote'} component={SearchNote} />
       <Stack.Screen name={'CreateLabel'} component={CreateLabel}/>
     </Stack.Navigator>

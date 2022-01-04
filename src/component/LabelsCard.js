@@ -25,6 +25,7 @@ export const LabelsCard = props => {
       props.fetchData();
     });
   };
+
   const onCheckButton = async () => {
     setIsEdit(true);
     labelOperation();
@@ -74,6 +75,7 @@ export const LabelsCard = props => {
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   check: {
     padding: 10,
@@ -85,4 +87,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
+
 export default LabelsCard;

@@ -7,7 +7,6 @@ import Delete from '../screens/Delete';
 import DrawerContent from '../component/DrawerContents';
 import EditLabels from '../screens/EditLabel';
 
-
 const DrawerNav = () => {
     const Drawer = createDrawerNavigator();
 
