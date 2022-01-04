@@ -24,6 +24,7 @@ export const Color = {
 export const Font = {
     PRIMARY: 20,
     SECONDARY: 15,
+    LARGE: 25,
 };
 
 export const Size = {

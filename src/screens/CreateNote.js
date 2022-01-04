@@ -1,11 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useRef} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -14,12 +9,10 @@ import {addUpdateNote} from '../service/NoteService';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import {BottomTabSheet} from '../component/BottomSheet';
 import {styles} from '../utility/GlobalStyle';
-import {
-  Color,
-  Size,
-} from '../utility/Theme';
-import { Shared } from '../component/Share';
-
+import {Color, Size} from '../utility/Theme';
+import {Shared} from '../component/Share';
+import {createNote} from '../component/ToastMsg';
+import {SetReminder} from './SetReminder';
 
 const CreateNote = ({navigation, route}) => {
   const [title, setTitle] = React.useState(
@@ -38,13 +31,14 @@ const CreateNote = ({navigation, route}) => {
   const refRBSheet = useRef();
   const refPlusRBSheet = useRef();
   const refColorRBSheet = useRef();
+  const refReminderRBSheet = useRef();
 
   const noteOperation = (screen, changeData = {}) => {
     const noteData = {title, note, isArchive, isPin, isDelete, ...changeData};
     const noteId = route?.params?.editData?.noteId;
     const routingCallback = () => navigation.navigate(screen);
     const op = noteId ? 'update' : 'add';
-    addUpdateNote(noteData,op, routingCallback, noteId);
+    addUpdateNote(noteData, op, routingCallback, noteId);
   };
 
   const onDeleteButton = async () => {
@@ -64,25 +58,41 @@ const CreateNote = ({navigation, route}) => {
         <View>
           <TouchableOpacity onPress={onDeleteButton}>
             <View style={styles.itemStyle}>
-              <AntDesign name="delete" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+              <AntDesign
+                name="delete"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
+              />
               <Text style={styles.text}>Delete</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity>
             <View style={styles.itemStyle}>
-              <Icons name="content-copy" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+              <Icons
+                name="content-copy"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
+              />
               <Text style={styles.text}>Make a copy</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Shared}>
             <View style={styles.itemStyle}>
-              <SimpleLineIcons name="share" size={Size.ICON_MEDIUM} color={Color.HEADING}/>
+              <SimpleLineIcons
+                name="share"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
+              />
               <Text style={styles.text}>Share</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate('CreateLabel')}>
             <View style={styles.itemStyle}>
-              <Icons name="label-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+              <Icons
+                name="label-outline"
+                size={Size.ICON_MEDIUM}
+                color={Color.HEADING}
+              />
               <Text style={styles.text}>Labels</Text>
             </View>
           </TouchableOpacity>
@@ -95,31 +105,59 @@ const CreateNote = ({navigation, route}) => {
     <View style={[styles.screen, styles.screen2]}>
       <View style={styles.topBar}>
         <View style={{flex: 1, padding: 12}}>
-          <TouchableOpacity onPress={onBackButton}>
-            <Icons name="arrow-left" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+          <TouchableOpacity
+            onPress={() => {
+              onBackButton();
+              createNote();
+            }}>
+            <Icons
+              name="arrow-left"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.topIcon}>
           <TouchableOpacity onPress={() => setIsPin(!isPin)}>
-            {
-                isPin ? <Icons
+            {isPin ? (
+              <Icons
                 name="pin"
                 size={Size.ICON_MEDIUM}
                 color={Color.HEADING}
                 style={{marginLeft: 100}}
               />
-              : <Icons name="pin-outline" color={Color.HEADING} size={Size.ICON_MEDIUM} style={{ marginLeft: 100 }} />
-            }
+            ) : (
+              <Icons
+                name="pin-outline"
+                color={Color.HEADING}
+                size={Size.ICON_MEDIUM}
+                style={{marginLeft: 100}}
+              />
+            )}
           </TouchableOpacity>
         </View>
         <View style={styles.topIcon}>
-          <TouchableOpacity>
-            <Icons name="bell-plus-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+          <TouchableOpacity onPress={() => refReminderRBSheet.current.open()}>
+            <Icons
+              name="bell-plus-outline"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
+          <RBSheet
+            ref={refReminderRBSheet}
+            closeOnDragDown={true}
+            closeOnPressMask={false}>
+            <SetReminder />
+          </RBSheet>
         </View>
         <View style={styles.topIcon}>
           <TouchableOpacity onPress={onArchiveButton}>
-            <Ionicons name="archive-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+            <Ionicons
+              name="archive-outline"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
         </View>
       </View>
@@ -147,7 +185,11 @@ const CreateNote = ({navigation, route}) => {
       <View style={styles.bottomStyle}>
         <View style={styles.bottomIcon}>
           <TouchableOpacity onPress={() => refPlusRBSheet.current.open()}>
-            <Icons name="plus-box-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+            <Icons
+              name="plus-box-outline"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
           <RBSheet
             ref={refPlusRBSheet}
@@ -158,7 +200,11 @@ const CreateNote = ({navigation, route}) => {
         </View>
         <View style={styles.bottomIcon}>
           <TouchableOpacity>
-            <Icons name="palette-outline" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+            <Icons
+              name="palette-outline"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
           {/* <RBSheet
             ref={refPlusRBSheet}
@@ -174,7 +220,11 @@ const CreateNote = ({navigation, route}) => {
         </View>
         <View style={styles.bottomIcon}>
           <TouchableOpacity onPress={() => refRBSheet.current.open()}>
-            <Icons name="dots-vertical" size={Size.ICON_MEDIUM} color={Color.HEADING} />
+            <Icons
+              name="dots-vertical"
+              size={Size.ICON_MEDIUM}
+              color={Color.HEADING}
+            />
           </TouchableOpacity>
           <RBSheet
             ref={refRBSheet}

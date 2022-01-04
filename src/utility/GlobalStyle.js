@@ -1,7 +1,6 @@
 import {StyleSheet, Dimensions} from 'react-native';
 import {Color, Padding, Size, Border, Font, Height, Width} from './Theme';
 
-
 const widthOfScreen = Dimensions.get('screen').width;
 const heightOfScreen = Dimensions.get('screen').height;
 
@@ -198,7 +197,7 @@ export const styles = StyleSheet.create({
     marginLeft: 20,
     color: Color.HEADING,
   },
-  itemsStyle:{
+  itemsStyle: {
     flexDirection: 'row',
     marginLeft: 20,
     alignItems: 'center',
@@ -329,10 +328,10 @@ export const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'grey',
   },
-  exception:{
+  exception: {
     paddingTop: Padding.INITIAL_PADDING,
   },
-  line:{
+  line: {
     borderBottomColor: Color.HEADING,
     borderBottomWidth: 1,
   },
@@ -368,5 +367,62 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginLeft: '35%',
   },
-  
+  headerLabels: {
+    height: 70,
+    width: '100%',
+  },
+  headerItems: {
+    flexDirection: 'row',
+  },
+  containers: {
+    height: 60,
+    width: '100%',
+    flexDirection: 'row',
+    padding: 15,
+  },
+  createtext: {
+    marginLeft: 30,
+    fontSize: 18,
+    color: 'black',
+  },
+  textInputs: {
+    fontSize: 18,
+  },
+  //Modal
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+  buttons: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  buttonOpen: {
+    backgroundColor: "#F194FF",
+  },
+  buttonClose: {
+    backgroundColor: "#2196F3",
+  },
 });
