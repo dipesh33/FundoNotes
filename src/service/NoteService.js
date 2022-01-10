@@ -1,26 +1,10 @@
 import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import modal from './Modal';
+import modal from './NoteServiceModel';
 
 const getUid = async () => {
     return await AsyncStorage.getItem('uid');
 };
-
-// export const storeNotes = async (noteData, routingCallback, noteId) => {
-//     const uid = await getUid();
-//     console.log(uid);
-//     return firestore()
-//         .collection('keepData')
-//         .doc(uid)
-//         .collection('Notes')
-//         .add({
-//             ...noteData,
-//         }).then(() => {
-//             routingCallback();
-//             console.log('data added');
-//         });
-// };
-
 
 export const fetchNotes = async() => {
     const uid = await getUid();

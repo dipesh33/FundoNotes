@@ -51,7 +51,7 @@ const Archive = ({navigation}) => {
           <Text style={styles.archiveTitle}>{dictonary.ARCHIVE_TEXT}</Text>
         </View>
         <View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('SearchNote')}>
             <MaterialIcon
                color={Color.HEADING}
               name="search"

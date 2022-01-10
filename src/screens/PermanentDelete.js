@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { delteNotes } from '../service/NoteService';
 
-const PermanentDelete = ({navigation}) => {
+const PermanentDelete = ({navigation, route}) => {
+    const [title, setTitle] = useState(route?.params?.editData?.title ?? '');
     
 }

@@ -1,15 +1,10 @@
 import React, {useState} from 'react';
-import {
-  View,
-  TouchableOpacity,
-  TextInput,
-  FlatList,
-} from 'react-native';
+import {View, TouchableOpacity, TextInput, FlatList} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import NoteCard from '../component/NoteCard';
 import {fetchNotes} from '../service/NoteService';
-import { styles } from '../utility/GlobalStyle';
-import { Color, Padding, Size } from '../utility/Theme';
+import {styles} from '../utility/GlobalStyle';
+import {Color, Padding, Size} from '../utility/Theme';
 
 const SearchNote = ({navigation}) => {
   const [allData, setAllState] = useState([]);
@@ -27,7 +22,11 @@ const SearchNote = ({navigation}) => {
   }, [navigation]);
 
   const getSearchTerm = textToSearch => {
-    const data = allData.filter(item => item.title === textToSearch);
+    const data = allData.filter(
+      item =>
+        item.title?.toUpperCase()?.includes(textToSearch.toUpperCase()) ||
+        item.content?.toUpperCase()?.includes(textToSearch.toUpperCase()),
+    );
     setSearchData(data);
   };
 
@@ -42,7 +41,7 @@ const SearchNote = ({navigation}) => {
             <Icons
               name="arrow-left"
               size={Size.ICON_MEDIUM}
-              color= {Color.HEADING}
+              color={Color.HEADING}
               style={{padding: Padding.SECONADARY_PADDING}}
             />
           </TouchableOpacity>
@@ -73,6 +72,5 @@ const SearchNote = ({navigation}) => {
     </View>
   );
 };
-
 
 export default SearchNote;

@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import {registration} from '../service/AuthService';
 import {styles} from '../utility/GlobalStyle';
+import {TextInput} from 'react-native-paper';
+import {Color} from '../utility/Theme';
 
 const Signup = ({navigation}) => {
   const [fullName, setFullName] = useState('');
@@ -50,60 +47,69 @@ const Signup = ({navigation}) => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.topView}>
-        <View style={styles.heading}>
-          <Text style={styles.titleText}>F Ո N D O{'\n'}N O T E S</Text>
+      <ScrollView>
+        <View style={styles.topView}>
+          <View style={styles.heading}>
+            <Text style={styles.titleText}>F Ո N D O{'\n'}N O T E S</Text>
+          </View>
+          <View style={[styles.bottomView, styles.bottomTab]}>
+            <Text style={styles.welcomeText}>
+              Create Account{'\n'}Signup to get started!
+            </Text>
+            <TextInput
+              label="Full Name"
+              value={fullName}
+              onChangeText={text => {
+                setFullName(text);
+              }}
+              errorText={errors.fname}
+              style={styles.textInput}
+              selectionColor={Color.HEADING}
+              outlineColor={Color.SECONDARY}
+              activeUnderlineColor={Color.PLACEHOLDER}
+            />
+            <TextInput
+              label="Email"
+              value={email}
+              onChangeText={text => {
+                setEmail(text);
+              }}
+              errorText={errors.mail}
+              style={styles.textInput}
+              outlineColor={Color.SECONDARY}
+              selectionColor={Color.HEADING}
+              activeUnderlineColor={Color.PLACEHOLDER}
+            />
+            <TextInput
+              label="Password"
+              value={password}
+              onChangeText={text => {
+                setPassword(text);
+              }}
+              errorText={errors.pass}
+              secureTextEntry
+              style={styles.textInput}
+              selectionColor={Color.HEADING}
+              activeUnderlineColor={Color.PLACEHOLDER}
+            />
+            {errors.pass && <Text style={{color: 'red'}}>{errors.pass}</Text>}
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                onSubmit();
+              }}>
+              <Text style={styles.buttonText}>Sign Up</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.TextButton}
+              onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.loginText}>If already a user, Sign In</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={[styles.bottomView, styles.bottomTab]}>
-          <Text style={styles.welcomeText}>
-            Create Account{'\n'}Signup to get started!
-          </Text>
-          <TextInput
-            placeholder="Full Name"
-            style={styles.textInput}
-            value={fullName}
-            onChangeText={text => {
-              setFullName(text);
-            }}
-            errorText={errors.fname}
-          />
-          <TextInput
-            placeholder="Email"
-            style={styles.textInput}
-            value={email}
-            onChangeText={text => {
-              setEmail(text);
-            }}
-            errorText={errors.mail}
-          />
-          <TextInput
-            placeholder="Password"
-            style={styles.textInput}
-            value={password}
-            onChangeText={text => {
-              setPassword(text);
-            }}
-            errorText={errors.pass}
-            secureTextEntry
-          />
-          {errors.pass && <Text style={{color: 'red'}}>{errors.pass}</Text>}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              onSubmit();
-            }}>
-            <Text style={styles.buttonText}>Sign Up</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.TextButton}
-            onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.loginText}>If already a user, Sign In</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
-
 
 export default Signup;

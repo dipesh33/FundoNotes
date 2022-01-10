@@ -7,6 +7,7 @@ import DrawerNav from './DrawerNav';
 import DrawerContent from '../component/DrawerContents';
 import SearchNote from '../screens/SearchNote';
 import CreateLabel from '../screens/CreateLabel';
+import Setting from '../screens/Setting';
 
 
 const StackNav = () => {
@@ -23,6 +24,7 @@ const StackNav = () => {
       <Stack.Screen name={'CreateNote'} component={CreateNote} />
       <Stack.Screen name={'SearchNote'} component={SearchNote} />
       <Stack.Screen name={'CreateLabel'} component={CreateLabel}/>
+      <Stack.Screen name={'Setting'} component={Setting}/>
     </Stack.Navigator>
   );
 };

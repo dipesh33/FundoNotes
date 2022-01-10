@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import {styles} from '../utility/GlobalStyle';
@@ -16,13 +16,18 @@ import {LogBox} from 'react-native';
 import useLocalisation from '../localisation/useLocalisation';
 import {Color, Padding, Size} from '../utility/Theme';
 import {Avatar} from 'react-native-elements';
+import Profile from '../component/Profile';
+import RBSheet from 'react-native-raw-bottom-sheet';
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+LogBox.ignoreLogs(['']);
 
 const Dashboard = ({navigation}) => {
   const [noteData, setNoteData] = React.useState([]);
   const [pinData, setPinData] = React.useState([]);
   const [isLoading, setLoading] = React.useState(true);
+
+  const refProfileRBSheet = useRef();
 
   //Redux
   const isList = useSelector(state => state.isList);
@@ -31,8 +36,6 @@ const Dashboard = ({navigation}) => {
   //Localisation
   const dictonary = useLocalisation('EN');
 
-  //Profile Picture
-  const [modalShow, setmodalShow] = React.useState(false);
 
   const fetchData = async () => {
     let data = await fetchNotes();
@@ -106,13 +109,21 @@ const Dashboard = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={{marginLeft: '2%'}}>
+            <TouchableOpacity onPress={() => refProfileRBSheet.current.open()}>
             <Avatar
-              onPress={() => setmodalShow(!modalShow)}
               rounded
               source={{
                 uri: 'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w',
               }}
             />
+            <RBSheet
+            ref={refProfileRBSheet}
+            height={250}
+            closeOnDragDown={true}
+            closeOnPressMask={false}>
+            <Profile />
+          </RBSheet>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

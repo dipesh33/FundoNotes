@@ -1,41 +1,39 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {handleSignin} from '../service/AuthService';
 import {styles} from '../utility/GlobalStyle';
-import { Color } from '../utility/Theme';
-import { FloatingTitleTextInputField } from '../component/TextBox';
+import {Color} from '../utility/Theme';
+import {HelperText, TextInput} from 'react-native-paper';
+import PushNotification from 'react-native-push-notification';
 
 const Login = ({navigation}) => {
+  // const [text, setText] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const validate = () => {
-    let regex =
-      /^[0-9a-zA-Z]+([._+-][0-9A-Za-z]+)*@[0-9A-Za-z]+[.][a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
-
-    let valid = true;
-    const temp = {};
-    if (!regex.test(email)) {
-      valid = false;
-      temp.mail = 'Enter the Email';
-    }
-    if (!password) {
-      valid = false;
-      temp.pass = 'Enter the Password';
-    }
-    setErrors(temp);
-
-    return valid;
+  const validateEmail = () => {
+    return !email.includes('@');
   };
+
+  const validatePassword = () => {
+    return !password.includes('^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$')
+  }
   const navigateToDashBoardPage = () => {
     navigation.navigate('DrawerNav');
   };
 
   const onSubmit = () => {
-    if (validate()) {
+    if (validateEmail()) {
       handleSignin(email, password, navigateToDashBoardPage);
     }
+  };
+
+  const createChannels = () => {
+    PushNotification.createChannel({
+      channelId: 'test-channel',
+      channelName: 'Test Channel',
+    });
   };
 
   return (
@@ -48,38 +46,41 @@ const Login = ({navigation}) => {
         <Text style={styles.welcomeText}>Welcome,{'\n'}Login now</Text>
         <Text style={styles.Text}>If you are new/ Create new</Text>
         <View style={styles.fieldBar}>
-        <TextInput
-          placeholder="Email"
-          placeholderTextColor={Color.HEADING}
-          style={styles.textInput}
-          value={email}
-          selectionColor={Color.HEADING}
-          onChangeText={setEmail}
-          errorText={errors.mail}
-        />
-        {/* <TextField
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          errorText={errors.mail}
-        /> */}
-        <TextInput
-          placeholder ="Password"
-          placeholderTextColor={Color.HEADING}
-          style={styles.textInput}
-          value={password}
-          onChangeText={setPassword}
-          errorText={errors.pass}
-          secureTextEntry
-        />
-        <TouchableOpacity style={styles.button} onPress={onSubmit}>
-          <Text style={styles.buttonText}>Sign In</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.TextButton}
-          onPress={() => navigation.navigate('Signup')}>
-          <Text style={styles.SignUpText}>Don't have an account? Sign up</Text>
-        </TouchableOpacity>
+          <TextInput
+            label="Email"
+            value={email}
+            onChangeText={setEmail}
+            errorText={errors.mail}
+            style={styles.textInput}
+            selectionColor={Color.HEADING}
+            activeUnderlineColor={Color.PLACEHOLDER}
+          />
+          <HelperText type="error" visible={validateEmail()}>
+            Email address is invalid!
+          </HelperText>
+          <TextInput
+            label="Password"
+            value={password}
+            onChangeText={setPassword}
+            errorText={errors.pass}
+            secureTextEntry
+            style={styles.textInput}
+            selectionColor={Color.HEADING}
+            activeUnderlineColor={Color.PLACEHOLDER}
+          />
+          {/* <HelperText type="error" visible={validatePassword()}>
+            Password is invalid!
+          </HelperText> */}
+          <TouchableOpacity style={styles.button} onPress={onSubmit}>
+            <Text style={styles.buttonText}>Sign In</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.TextButton}
+            onPress={() => navigation.navigate('Signup')}>
+            <Text style={styles.SignUpText}>
+              Don't have an account? Sign up
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

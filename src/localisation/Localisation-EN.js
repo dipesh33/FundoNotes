@@ -8,4 +8,5 @@ export default {
   ARCHIVE_TEXT: 'Archive',
   DELETED_TEXT: 'Deleted',
   LOGOUT_TEXT: 'Logout',
+  SETTING_TEXT: 'Setting',
 };

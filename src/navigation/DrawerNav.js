@@ -6,6 +6,7 @@ import Archive from '../screens/Archive';
 import Delete from '../screens/Delete';
 import DrawerContent from '../component/DrawerContents';
 import EditLabels from '../screens/EditLabel';
+import Setting from '../screens/Setting';
 
 const DrawerNav = () => {
     const Drawer = createDrawerNavigator();
@@ -17,6 +18,7 @@ const DrawerNav = () => {
             <Drawer.Screen name="Archive" component={Archive}/>
             <Drawer.Screen name="Delete" component={Delete}/>
             <Drawer.Screen name="EditLabel" component={EditLabels}/>
+            <Drawer.Screen name="Setting" component={Setting}/>
         </Drawer.Navigator>
     );
 };

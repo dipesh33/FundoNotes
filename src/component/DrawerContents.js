@@ -57,7 +57,7 @@ const DrawerContent = ({navigation}) => {
         </View>
       </TouchableOpacity>
 
-      {/* {labelData.length > 0 ? (
+      {labelData?.length > 0 ? (
         <View>
           <View style={styles.line} />
           {labelData.map(item => (
@@ -75,7 +75,7 @@ const DrawerContent = ({navigation}) => {
           ))}
           <View style={styles.line} />
         </View>
-      ) : null} */}
+      ) : null}
 
       <View>
         <TouchableOpacity onPress={() => navigation.navigate('EditLabel')}>

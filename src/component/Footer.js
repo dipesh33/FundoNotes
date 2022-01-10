@@ -15,9 +15,9 @@ const Footer = () => {
   return (
     <View style={styles.footer}>
       <View style={styles.view}>
-        <TouchableOpacity>
+        {/* <TouchableOpacity>
           <AntDesign name="checksquareo" style={styles.icons} size={Size.ICON_MEDIUM} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity>
           <MaterialIcon name="brush" style={styles.icons} size={Size.ICON_MEDIUM} />
         </TouchableOpacity>

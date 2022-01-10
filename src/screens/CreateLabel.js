@@ -10,7 +10,7 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {addLabel, fetchLabelsData} from '../service/LabelService';
 import {useDispatch, useSelector} from 'react-redux';
 import {setLabelData} from '../redux/actions';
-import LabelCard from '../component/LabelCard';
+import {LabelCard} from '../component/LabelCard';
 import { styles } from '../utility/GlobalStyle';
 
 const CreateLabel = ({navigation}) => {
@@ -39,7 +39,7 @@ const CreateLabel = ({navigation}) => {
       fetchData();
     });
   };
-  
+
   const onPlusButton = () => {
     setFocused(!isFocused);
     noteOperation();
@@ -48,7 +48,7 @@ const CreateLabel = ({navigation}) => {
     <View style={styles.container}>
       <View style={styles.headerLabels}>
         <View style={styles.headerItems}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('CreateNote')}>
             <Icons
               name="arrow-left"
               size={25}

@@ -19,6 +19,7 @@ export const Color = {
     ERROR_TEXT: 'red',
     NOTE_CARD: 'aliceblue',
     SHADOW: 'skyblue',
+    PLACEHOLDER: '#635105',
 };
 
 export const Font = {

@@ -25,6 +25,7 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: Border.ROUND_CORNER,
     paddingHorizontal: Padding.PRIMARY_PADDING,
     paddingVertical: Padding.VERTICAL_PADDING,
+    flexShrink: 0
   },
   titleText: {
     fontSize: 35,
