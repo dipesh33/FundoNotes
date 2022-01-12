@@ -39,8 +39,11 @@ export const registration = async (email, password, fullName, callBack) => {
   export const handleSignOut = async(callback) => {
     auth()
     .signOut()
-    .then(() =>
+    .then(() =>{
     callback(),
-    console.log("user signed out !")
-    )
+    console.log("user signed out !", handleSignOut())
+    }, 
+    function(error){
+      // console.log('sign out error', error)
+    })
   }

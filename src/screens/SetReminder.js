@@ -48,13 +48,13 @@ export const SetReminder = () => {
   const togglesModal = () => {
     setIsModalVisible(false);
   };
-  
+
   const handleNotification = () => {
     setIsModalVisible(!isModalVisible);
     if (date != null && time != null) {
-      let date = JSON.stringify(date).slice(1, 11);
-      let time = JSON.stringify(time).slice(11, 25);
-      let dateShedule = new Date(date + time);
+      let newDate = JSON.stringify(date).slice(1, 11);
+      let newTime = JSON.stringify(time).slice(11, 25);
+      let dateShedule = new Date(newDate + newTime);
 
       PushNotification.localNotificationSchedule({
         channelId: 'test-channel',

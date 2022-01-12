@@ -1,4 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
+import { heightPercentageToDP, widthPercentageToDP } from './SizeCalculation';
 import {Color, Padding, Size, Border, Font, Height, Width} from './Theme';
 
 const widthOfScreen = Dimensions.get('screen').width;
@@ -148,7 +149,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'column-reverse',
   },
   listStyle: {
-    marginLeft: 120,
+    marginLeft: widthPercentageToDP('25%'),
   },
   //Notecard
   footer: {
@@ -245,6 +246,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
+    backgroundColor: '#E5E4E2',
   },
   bottomIcon: {
     justifyContent: 'center',
@@ -451,5 +453,15 @@ export const styles = StyleSheet.create({
   modalText1: {
     fontSize: 15,
     color: 'black',
+  },
+  splashText:{
+    color: 'white',
+    fontSize: 50,
+  },
+  appLoader:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    zIndex: 1,
   },
 });

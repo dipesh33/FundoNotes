@@ -4,8 +4,7 @@ import {handleSignin} from '../service/AuthService';
 import {styles} from '../utility/GlobalStyle';
 import {Color} from '../utility/Theme';
 import {HelperText, TextInput} from 'react-native-paper';
-import PushNotification from 'react-native-push-notification';
-import { GoogleSocialButton } from "react-native-social-buttons";
+import { GoogleSocialButton } from 'react-native-social-buttons';
 
 const Login = ({navigation}) => {
   // const [text, setText] = useState('');
@@ -25,7 +24,7 @@ const Login = ({navigation}) => {
     }
     if (!password) {
       valid = false;
-      temp['psw'] = 'Enter the Password';
+      temp['pass'] = 'Enter the Password';
     }
     setErrors(temp);
 
@@ -37,16 +36,9 @@ const Login = ({navigation}) => {
   };
 
   const onSubmit = () => {
-    if (validate()) {
+    if (!validate()) {
       handleSignin(email, password, navigateToDashBoardPage);
     }
-  };
-
-  const createChannels = () => {
-    PushNotification.createChannel({
-      channelId: 'test-channel',
-      channelName: 'Test Channel',
-    });
   };
 
   return (
@@ -68,6 +60,7 @@ const Login = ({navigation}) => {
               selectionColor={Color.HEADING}
               activeUnderlineColor={Color.PLACEHOLDER}
             />
+            <Text style={{color: 'red'}}>{errors.mail}</Text>
           <TextInput
             label="Password"
             value={password}
@@ -77,23 +70,13 @@ const Login = ({navigation}) => {
             style={styles.textInput}
             selectionColor={Color.HEADING}
             activeUnderlineColor={Color.PLACEHOLDER}
-          /> 
-            {/* <FormInput
-          value={email}
-          onChangeText={setEmail}
-          errorText={errors.mail}
-          placeholderText="Email"
-          placeholderTextColor="grey"
-        /> */}
-            {/* <HelperText type="error" visible={validatePassword()}>
-            Password is invalid!
-          </HelperText> */}
+          />
             <TouchableOpacity style={styles.button} onPress={onSubmit}>
               <Text style={styles.buttonText}>Sign In</Text>
             </TouchableOpacity>
-            <GoogleSocialButton
+            {/* <GoogleSocialButton
             style={styles.googleButton}
-            />
+            /> */}
             <TouchableOpacity
               style={styles.TextButton}
               onPress={() => navigation.navigate('Signup')}>

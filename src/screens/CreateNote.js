@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useRef} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, ScrollView} from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -42,7 +42,7 @@ const CreateNote = ({navigation, route}) => {
   };
 
   const onDeleteButton = async () => {
-    noteOperation('Dashboard', {isDelete: !isDelete});
+    noteOperation('Delete', {isDelete: !isDelete});
   };
 
   const onArchiveButton = async () => {
@@ -147,7 +147,7 @@ const CreateNote = ({navigation, route}) => {
           <RBSheet
             ref={refReminderRBSheet}
             closeOnDragDown={true}
-            closeOnPressMask={false}
+            closeOnPressMask={true}
             height={100}>
             <SetReminder />
           </RBSheet>
@@ -172,6 +172,7 @@ const CreateNote = ({navigation, route}) => {
             onChangeText={value => setTitle(value)}
           />
         </View>
+        <ScrollView>
         <View>
           <TextInput
             style={{fontSize: 20}}
@@ -182,6 +183,7 @@ const CreateNote = ({navigation, route}) => {
             multiline={true}
           />
         </View>
+        </ScrollView>
       </View>
       <View style={styles.bottomStyle}>
         <View style={styles.bottomIcon}>

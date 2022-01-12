@@ -1,6 +1,7 @@
 import {Dimensions} from 'react-native';
 
 const {width, height} = Dimensions.get('window');
+const fontscale = Dimensions.get('window').fontScale;
 
 console.log('height: ', height);
 console.log('width: ', width);
@@ -23,9 +24,9 @@ export const Color = {
 };
 
 export const Font = {
-    PRIMARY: 20,
-    SECONDARY: 15,
-    LARGE: 25,
+    PRIMARY: 20 / fontscale,
+    SECONDARY: 15 / fontscale,
+    LARGE: 25 / fontscale,
 };
 
 export const Size = {

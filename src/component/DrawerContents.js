@@ -8,11 +8,11 @@ import {Color, Font, Padding, Size} from '../utility/Theme';
 import useLocalisation from '../localisation/useLocalisation';
 import {fetchLabelsData} from '../service/LabelService';
 import { handleSignOut } from '../service/AuthService';
-
 import {useDispatch, useSelector} from 'react-redux';
 import {setLabelData} from '../redux/actions';
 
 const DrawerContent = ({navigation}) => {
+
   //Localisation
   const dictonary = useLocalisation('EN');
 
@@ -32,11 +32,12 @@ const DrawerContent = ({navigation}) => {
 
   const navigateToLoginScreen = () => {
     navigation.navigate('Login');
-  }
+  };
 
   const onLogout = () => {
-    handleSignOut(navigateToLoginScreen)
-  }
+    handleSignOut(navigateToLoginScreen);
+  };
+
 
   return (
     <View style={styles.container}>
@@ -54,7 +55,6 @@ const DrawerContent = ({navigation}) => {
           <Text style={styles.text}>{dictonary.NOTES_TEXT}</Text>
         </View>
       </TouchableOpacity>
-
       <TouchableOpacity onPress={() => navigation.navigate('Reminder')}>
         <View style={styles.itemsStyle}>
           <Icons

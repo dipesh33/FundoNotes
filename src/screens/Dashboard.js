@@ -18,6 +18,8 @@ import {Color, Padding, Size} from '../utility/Theme';
 import {Avatar} from 'react-native-elements';
 import Profile from '../component/Profile';
 import RBSheet from 'react-native-raw-bottom-sheet';
+import PushNotification from 'react-native-push-notification';
+import AppLoader from '../component/AppLoader';
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 LogBox.ignoreLogs(['']);
@@ -37,36 +39,40 @@ const Dashboard = ({navigation}) => {
   const dictonary = useLocalisation('EN');
 
 
-  const fetchData = async () => {
+  const fetchData = React.useCallback(async () => {
     let data = await fetchNotes();
     const pin = [];
     const unpin = [];
     data.forEach(item => {
-      if (item.isPin && !item.isArchive && !item.delete) {
+      if (item.isPin && !item.isArchive && !item.isDelete) {
         pin.push(item);
-      } else if (!item.isPin && !item.isArchive && !item.delete) {
+      } else if (!item.isPin && !item.isArchive && !item.isDelete) {
         unpin.push(item);
       }
     });
     setNoteData(unpin);
     setPinData(pin);
     setLoading(false);
+  }, []);
+
+  const createChannels = () => {
+    PushNotification.createChannel({
+      channelId: 'test-channel',
+      channelName: 'Test Channel',
+    });
   };
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       fetchData();
+      createChannels();
     });
     return unsubscribe;
-  }, [navigation]);
+  }, [navigation, fetchData]);
 
   if (isLoading) {
     return (
-      <Image
-        resizeMode="center"
-        style={styles.loader}
-        source={{uri: 'https://gfycat.com/fluidelderlyamericantoad'}}
-      />
+      <AppLoader/>
     );
   }
 
@@ -108,7 +114,7 @@ const Dashboard = ({navigation}) => {
               )}
             </TouchableOpacity>
           </View>
-          <View style={{marginLeft: '2%'}}>
+          <View style={{marginLeft: '4%'}}>
             <TouchableOpacity onPress={() => refProfileRBSheet.current.open()}>
             <Avatar
               rounded
