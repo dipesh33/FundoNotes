@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Color.SECONDARY,
   },
   topView: {
-    flex: Size.FLEX,
+    flex: 1,
     justifyContent: 'flex-end',
     paddingHorizontal: Padding.PRIMARY_PADDING,
     paddingBottom: Padding.BOTTOM_PADDING,
@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     borderTopLeftRadius: Border.ROUND_CORNER,
     borderTopRightRadius: Border.ROUND_CORNER,
     paddingHorizontal: Padding.PRIMARY_PADDING,
-    paddingVertical: Padding.VERTICAL_PADDING,
-    flexShrink: 0
+    paddingVertical: 40,
+    flexShrink: 0,
   },
   titleText: {
     fontSize: 35,
@@ -418,12 +418,38 @@ export const styles = StyleSheet.create({
   buttons: {
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: '#F194FF',
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: '#2196F3',
+  },
+  modalContainer1: {
+    backgroundColor: 'white',
+    borderRadius: 10,
+  },
+  modalContainer2: {
+    width: '80%',
+    height: '50%',
+    marginLeft: '10%',
+    marginRight: '10%',
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: 'black',
+    marginTop: 20,
+    marginBottom: 30,
+    textAlign: 'center',
+  },
+  firstRow: {
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  modalText1: {
+    fontSize: 15,
+    color: 'black',
   },
 });

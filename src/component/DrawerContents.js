@@ -7,6 +7,7 @@ import {styles} from '../utility/GlobalStyle';
 import {Color, Font, Padding, Size} from '../utility/Theme';
 import useLocalisation from '../localisation/useLocalisation';
 import {fetchLabelsData} from '../service/LabelService';
+import { handleSignOut } from '../service/AuthService';
 
 import {useDispatch, useSelector} from 'react-redux';
 import {setLabelData} from '../redux/actions';
@@ -28,6 +29,14 @@ const DrawerContent = ({navigation}) => {
     });
     return unsubscribe;
   }, [navigation, fetchData]);
+
+  const navigateToLoginScreen = () => {
+    navigation.navigate('Login');
+  }
+
+  const onLogout = () => {
+    handleSignOut(navigateToLoginScreen)
+  }
 
   return (
     <View style={styles.container}>

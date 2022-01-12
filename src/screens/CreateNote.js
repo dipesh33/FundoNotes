@@ -147,7 +147,8 @@ const CreateNote = ({navigation, route}) => {
           <RBSheet
             ref={refReminderRBSheet}
             closeOnDragDown={true}
-            closeOnPressMask={false}>
+            closeOnPressMask={false}
+            height={100}>
             <SetReminder />
           </RBSheet>
         </View>

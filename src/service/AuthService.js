@@ -35,3 +35,12 @@ export const registration = async (email, password, fullName, callBack) => {
       console.log(e.message);
     }
   };
+
+  export const handleSignOut = async(callback) => {
+    auth()
+    .signOut()
+    .then(() =>
+    callback(),
+    console.log("user signed out !")
+    )
+  }
