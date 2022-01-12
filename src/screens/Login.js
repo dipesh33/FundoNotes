@@ -4,7 +4,7 @@ import {handleSignin} from '../service/AuthService';
 import {styles} from '../utility/GlobalStyle';
 import {Color} from '../utility/Theme';
 import {HelperText, TextInput} from 'react-native-paper';
-import { GoogleSocialButton } from 'react-native-social-buttons';
+import {GoogleSocialButton} from 'react-native-social-buttons';
 
 const Login = ({navigation}) => {
   // const [text, setText] = useState('');
@@ -20,11 +20,11 @@ const Login = ({navigation}) => {
     const temp = {};
     if (!regex.test(email)) {
       valid = false;
-      temp['mail'] = 'Enter the Email';
+      temp['mail'] = 'Enter valid email';
     }
     if (!password) {
       valid = false;
-      temp['pass'] = 'Enter the Password';
+      temp['pass'] = 'Enter valid password';
     }
     setErrors(temp);
 
@@ -60,17 +60,22 @@ const Login = ({navigation}) => {
               selectionColor={Color.HEADING}
               activeUnderlineColor={Color.PLACEHOLDER}
             />
-            <Text style={{color: 'red'}}>{errors.mail}</Text>
-          <TextInput
-            label="Password"
-            value={password}
-            onChangeText={setPassword}
-            errorText={errors.pass}
-            secureTextEntry
-            style={styles.textInput}
-            selectionColor={Color.HEADING}
-            activeUnderlineColor={Color.PLACEHOLDER}
-          />
+            <View style={styles.errorText}>
+              <Text style={{color: 'red'}}>{errors.mail}</Text>
+            </View>
+            <TextInput
+              label="Password"
+              value={password}
+              onChangeText={setPassword}
+              errorText={errors.pass}
+              secureTextEntry
+              style={styles.textInput}
+              selectionColor={Color.HEADING}
+              activeUnderlineColor={Color.PLACEHOLDER}
+            />
+            <View style={styles.errorText}>
+            {errors.pass && <Text style={{color: 'red'}}>{errors.pass}</Text>}
+            </View>
             <TouchableOpacity style={styles.button} onPress={onSubmit}>
               <Text style={styles.buttonText}>Sign In</Text>
             </TouchableOpacity>

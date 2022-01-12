@@ -464,4 +464,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.3)',
     zIndex: 1,
   },
+  errorText:{
+    paddingLeft: Padding.VERTICAL_PADDING,
+  },
 });
