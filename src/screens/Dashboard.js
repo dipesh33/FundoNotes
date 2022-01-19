@@ -16,10 +16,9 @@ import {LogBox} from 'react-native';
 import useLocalisation from '../localisation/useLocalisation';
 import {Color, Padding, Size} from '../utility/Theme';
 import {Avatar} from 'react-native-elements';
-import Profile from '../component/Profile';
-import RBSheet from 'react-native-raw-bottom-sheet';
 import PushNotification from 'react-native-push-notification';
 import AppLoader from '../component/AppLoader';
+import ImageModal from '../component/ImageModal';
 
 LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
 LogBox.ignoreLogs(['']);
@@ -115,20 +114,13 @@ const Dashboard = ({navigation}) => {
             </TouchableOpacity>
           </View>
           <View style={{marginLeft: '4%'}}>
-            <TouchableOpacity onPress={() => refProfileRBSheet.current.open()}>
+            <TouchableOpacity onPress={() => ImageModal()}>
             <Avatar
               rounded
               source={{
                 uri: 'https://images.squarespace-cdn.com/content/v1/54b7b93ce4b0a3e130d5d232/1519987020970-8IQ7F6Z61LLBCX85A65S/icon.png?format=1000w',
               }}
             />
-            <RBSheet
-            ref={refProfileRBSheet}
-            height={250}
-            closeOnDragDown={true}
-            closeOnPressMask={false}>
-            <Profile />
-          </RBSheet>
             </TouchableOpacity>
           </View>
         </View>

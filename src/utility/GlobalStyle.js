@@ -81,6 +81,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 20,
   },
+  formInput: {
+    width: '100%',
+    borderWidth: 1,
+    borderColor: 'grey',
+    borderRadius: 8,
+    fontSize: 18,
+  },
   //SignUp Screen
   heading: {
     padding: Padding.VERTICAL_PADDING,
@@ -437,6 +444,11 @@ export const styles = StyleSheet.create({
     height: '50%',
     marginLeft: '10%',
     marginRight: '10%',
+  },
+  paletteText:{
+    fontSize: Font.PRIMARY,
+    marginLeft: 20,
+    color: Color.HEADING,
   },
   modalTitle: {
     fontSize: 20,

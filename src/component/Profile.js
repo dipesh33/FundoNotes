@@ -5,8 +5,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import { Color, Size } from '../utility/Theme';
 import { styles } from '../utility/GlobalStyle';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const Profile = ({navigtion}) => {
+
   return (
     <View style={styles.container}>
       <TouchableOpacity>

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "910204882403-gc5k5s5cn57lfbuf2ot060dpu21mbbmg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fundonotes",
+            "certificate_hash": "e00ad68cf60a230823ab977b52ed6f7513b926f4"
+          }
+        },
+        {
           "client_id": "910204882403-bh2nitcpdsv7da1k1mkqaer7c75v1gb8.apps.googleusercontent.com",
           "client_type": 3
         }

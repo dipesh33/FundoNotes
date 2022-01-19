@@ -11,8 +11,9 @@ import {BottomTabSheet} from '../component/BottomSheet';
 import {styles} from '../utility/GlobalStyle';
 import {Color, Size} from '../utility/Theme';
 import {Shared} from '../component/Share';
-import {createNote} from '../component/ToastMsg';
+import {archiveNote, createNote, deleteNote} from '../component/ToastMsg';
 import {SetReminder} from './SetReminder';
+import Palette from '../component/Palette';
 
 const CreateNote = ({navigation, route}) => {
   const [title, setTitle] = React.useState(
@@ -64,16 +65,6 @@ const CreateNote = ({navigation, route}) => {
                 color={Color.HEADING}
               />
               <Text style={styles.text}>Delete</Text>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <View style={styles.itemStyle}>
-              <Icons
-                name="content-copy"
-                size={Size.ICON_MEDIUM}
-                color={Color.HEADING}
-              />
-              <Text style={styles.text}>Make a copy</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity onPress={Shared}>
@@ -170,6 +161,7 @@ const CreateNote = ({navigation, route}) => {
             placeholder="Title"
             placeholderTextColor="grey"
             onChangeText={value => setTitle(value)}
+            selectionColor={Color.SECONDARY}
           />
         </View>
         <ScrollView>
@@ -181,6 +173,7 @@ const CreateNote = ({navigation, route}) => {
             placeholderTextColor="grey"
             onChangeText={value => setNote(value)}
             multiline={true}
+            selectionColor={Color.SECONDARY}
           />
         </View>
         </ScrollView>
@@ -201,21 +194,22 @@ const CreateNote = ({navigation, route}) => {
             <BottomTabSheet />
           </RBSheet>
         </View>
-        <View style={styles.bottomIcon}>
-          <TouchableOpacity>
+        {/* <View style={styles.bottomIcon}>
+          <TouchableOpacity onPress={() => refColorRBSheet.current.open()}>
             <Icons
               name="palette-outline"
               size={Size.ICON_MEDIUM}
               color={Color.HEADING}
             />
           </TouchableOpacity>
-          {/* <RBSheet
+          <RBSheet
             ref={refPlusRBSheet}
             closeOnDragDown={true}
-            closeOnPressMask={false}>
-
-            </RBSheet> */}
-        </View>
+            closeOnPressMask={true}
+            closeOnPressBack={true}>
+              <Palette/>
+            </RBSheet>
+        </View> */}
         <View style={styles.editedText}>
           <TouchableOpacity>
             <Text style={styles.textColor}>Edited </Text>
@@ -232,7 +226,8 @@ const CreateNote = ({navigation, route}) => {
           <RBSheet
             ref={refRBSheet}
             closeOnDragDown={true}
-            closeOnPressMask={false}>
+            closeOnPressMask={true}
+            height={200}>
             <BottomSheet />
           </RBSheet>
         </View>

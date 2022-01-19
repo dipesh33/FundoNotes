@@ -55,7 +55,7 @@ const DrawerContent = ({navigation}) => {
           <Text style={styles.text}>{dictonary.NOTES_TEXT}</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('Reminder')}>
+      {/* <TouchableOpacity onPress={() => navigation.navigate('Reminder')}>
         <View style={styles.itemsStyle}>
           <Icons
             name="bell-outline"
@@ -64,7 +64,7 @@ const DrawerContent = ({navigation}) => {
           />
           <Text style={styles.text}>{dictonary.REMINDER_TEXT}</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {labelData?.length > 0 ? (
         <View>
